@@ -40,63 +40,38 @@
 ========================================================= */
 
 .letter-inside {
-
-    /*
-     * Posición absoluta respecto al sobre.
-     */
     position: absolute;
 
+    /* CENTRADO PERFECTO DENTRO DEL SOBRE */
     left: 50%;
-    bottom: 5%;
+    top: 50%;
 
-    /*
-     * Tamaño de la carta.
-     */
-    width: 78%;
-    max-width: 340px;
+    width: 82%;
+    max-width: 380px;
 
-    /*
-     * Forma y dimensiones.
-     */
     min-height: 250px;
 
     box-sizing: border-box;
 
-    /*
-     * Espaciado interno.
-     */
     padding: 28px 24px;
 
-    /*
-     * Apariencia de papel.
-     */
     background: #fffaf7;
 
     border-radius: 4px;
 
     border: 1px solid rgba(120, 70, 70, 0.12);
 
-    box-shadow:
-        0 8px 25px rgba(60, 30, 30, 0.15);
+    box-shadow: 0 8px 25px rgba(60, 30, 30, 0.15);
 
     /*
-     * Centrada horizontalmente.
+     * Inicialmente está exactamente centrada.
      */
-    transform:
-        translateX(-50%)
-        translateY(0);
+    transform: translate(-50%, -50%);
 
     /*
-     * IMPORTANTE:
-     * inicialmente está detrás del cuerpo del sobre.
+     * Detrás del sobre.
      */
     z-index: 1;
-
-    /*
-     * La carta no puede modificar el tamaño
-     * del sobre.
-     */
-    overflow: hidden;
 
     transition:
         transform 0.9s cubic-bezier(.22, .61, .36, 1),
@@ -188,21 +163,18 @@
  */
 
 .envelope-open .letter-inside {
-
     z-index: 20;
 
+    /*
+     * Primero la mantenemos centrada
+     * y después la desplazamos hacia arriba.
+     */
     transform:
-        translateX(-50%)
-        translateY(-92%);
+        translate(-50%, calc(-50% - 180px));
 
     box-shadow:
         0 18px 45px rgba(60, 30, 30, 0.18);
 }
-
-
-/*
- * La solapa se abre hacia atrás.
- */
 
 .envelope-open .envelope-flap {
 
