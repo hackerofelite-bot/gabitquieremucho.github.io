@@ -2,360 +2,222 @@
     'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap'
 );
 
-```css
 /* =========================================================
-   SOBRE + CARTA
-   Sistema completo y ordenado
+   CARTA QUE APARECE DESPUÉS DEL CAPTCHA
 ========================================================= */
 
+.love-letter {
 
-/* =========================================================
-   CONTENEDOR DEL SOBRE
-========================================================= */
-
-.envelope-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-}
-
-
-/* =========================================================
-   SOBRE
-========================================================= */
-
-.envelope {
-    width: min(500px, 92vw);
-    aspect-ratio: 1.65 / 1;
-    margin: 0 auto;
-    position: relative;
-}
-
-
-/* =========================================================
-   CARTA
-========================================================= */
-
-.letter-inside {
-    position: absolute;
-
-    /* CENTRADO PERFECTO DENTRO DEL SOBRE */
-    left: 50%;
-    top: 50%;
-
-    width: 82%;
-    max-width: 380px;
-
-    min-height: 250px;
-
-    box-sizing: border-box;
-
-    padding: 28px 24px;
-
-    background: #fffaf7;
-
-    border-radius: 4px;
-
-    border: 1px solid rgba(120, 70, 70, 0.12);
-
-    box-shadow: 0 8px 25px rgba(60, 30, 30, 0.15);
-
-    /*
-     * Inicialmente está exactamente centrada.
-     */
-    transform: translate(-50%, -50%);
-
-    /*
-     * Detrás del sobre.
-     */
-    z-index: 1;
-
-    transition:
-        transform 0.9s cubic-bezier(.22, .61, .36, 1),
-        box-shadow 0.5s ease;
-}
-
-
-/* =========================================================
-   CUERPO DEL SOBRE
-========================================================= */
-
-.envelope-body {
-
-    position: absolute;
+    position: fixed;
 
     inset: 0;
 
-    /*
-     * El cuerpo del sobre tapa completamente
-     * la carta mientras está cerrado.
-     */
-    z-index: 5;
+    display: flex;
 
-    /*
-     * IMPORTANTE:
-     * utiliza aquí tus propiedades visuales actuales
-     * de color/fondo si ya las tienes.
-     */
-}
+    align-items: center;
+    justify-content: center;
 
+    padding: 20px;
 
-/* =========================================================
-   SOLAPA DEL SOBRE
-========================================================= */
+    box-sizing: border-box;
 
-.envelope-flap {
+    background: rgba(255, 245, 247, 0.35);
 
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 55%;
-
-    /*
-     * La solapa está delante de la carta.
-     */
-    z-index: 7;
-
-    transform-origin: top center;
-
-    transition:
-        transform 0.9s cubic-bezier(.22, .61, .36, 1);
-}
-
-
-/* =========================================================
-   SELLO
-========================================================= */
-
-.envelope-seal {
-
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform: translate(-50%, -50%);
-
-    /*
-     * Siempre por encima del sobre cerrado.
-     */
-    z-index: 10;
-
-    transition:
-        opacity 0.3s ease,
-        transform 0.5s ease;
-}
-
-
-/* =========================================================
-   SOBRE ABIERTO
-========================================================= */
-
-
-/*
- * Cuando se abre, la carta sale hacia arriba.
- */
-
-.envelope-open .letter-inside {
-    z-index: 20;
-
-    /*
-     * Primero la mantenemos centrada
-     * y después la desplazamos hacia arriba.
-     */
-    transform:
-        translate(-50%, calc(-50% - 180px));
-
-    box-shadow:
-        0 18px 45px rgba(60, 30, 30, 0.18);
-}
-
-.envelope-open .envelope-flap {
-
-    z-index: 2;
-
-    transform:
-        rotateX(180deg);
-}
-
-
-/*
- * El cuerpo permanece detrás de la carta.
- */
-
-.envelope-open .envelope-body {
-
-    z-index: 3;
-}
-
-
-/*
- * El sello desaparece al abrirse.
- */
-
-.envelope-open .envelope-seal {
+    backdrop-filter: blur(4px);
 
     opacity: 0;
 
-    transform:
-        translate(-50%, -50%)
-        scale(0.7);
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform: translateY(25px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.22, .61, .36, 1),
+        visibility 0.8s;
+
+    z-index: 100;
+}
+
+
+/* =========================================================
+   CARTA VISIBLE
+========================================================= */
+
+.love-letter.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   PAPEL
+========================================================= */
+
+.love-letter-paper {
+
+    position: relative;
+
+    width: min(600px, 92vw);
+
+    max-height: 85vh;
+
+    overflow-y: auto;
+
+    box-sizing: border-box;
+
+    padding: 50px 45px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffdfb,
+            #fff7f4
+        );
+
+    border-radius: 5px;
+
+    border: 1px solid
+        rgba(120, 70, 70, 0.12);
+
+    box-shadow:
+        0 25px 80px
+        rgba(60, 30, 30, 0.25);
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   BORDE DECORATIVO
+========================================================= */
+
+.love-letter-paper::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 14px;
+
+    border: 1px solid
+        rgba(180, 100, 120, 0.18);
 
     pointer-events: none;
 }
 
 
 /* =========================================================
-   CONTENIDO DE LA CARTA
+   TÍTULO
 ========================================================= */
 
-.letter-inside .small-title {
+.letter-small-title {
 
     display: block;
 
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
-    text-align: center;
+    font-size: 0.75rem;
 
-    font-size: 0.72rem;
-
-    font-weight: 600;
-
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
     text-transform: uppercase;
+
+    opacity: 0.65;
 }
 
 
-.letter-inside h1 {
+.letter-heart {
 
-    margin: 8px 0 15px;
+    margin-bottom: 8px;
 
-    text-align: center;
-
-    font-size: clamp(1.35rem, 4vw, 1.8rem);
-
-    line-height: 1.25;
+    font-size: 1.5rem;
 }
 
 
-.letter-inside .ornament {
+.love-letter-paper h2 {
 
-    margin: 12px 0;
+    margin: 10px 0 25px;
 
-    text-align: center;
-
-    font-size: 1.3rem;
-}
-
-
-.letter-inside > p {
-
-    margin: 10px 0 18px;
-
-    text-align: center;
-
-    line-height: 1.5;
+    font-size:
+        clamp(2rem, 6vw, 3rem);
 }
 
 
 /* =========================================================
-   FORMULARIO
+   TEXTO
 ========================================================= */
 
-#captchaForm {
+.love-letter-paper p {
 
-    display: flex;
+    max-width: 500px;
 
-    flex-direction: column;
+    margin:
+        0 auto 18px;
 
-    align-items: stretch;
+    line-height: 1.8;
 
-    gap: 10px;
-
-    width: 100%;
+    font-size: 1.05rem;
 }
 
 
-#captchaAnswer {
+/* =========================================================
+   FIRMA
+========================================================= */
 
-    width: 100%;
+.letter-signature {
+
+    margin-top: 35px;
+
+    margin-bottom: 30px;
+
+    font-style: italic;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CAPTCHA
+========================================================= */
+
+.captcha-card {
+
+    width: min(430px, 90vw);
+
+    margin-top: 35px;
+
+    padding: 30px;
 
     box-sizing: border-box;
 
-    padding: 12px 14px;
-
-    border-radius: 8px;
-
-    border: 1px solid rgba(120, 70, 70, 0.2);
-
-    background: white;
-
-    font-size: 1rem;
-
-    outline: none;
-}
-
-
-#captchaAnswer:focus {
-
-    border-color: #c96b83;
-
-    box-shadow:
-        0 0 0 3px rgba(201, 107, 131, 0.12);
-}
-
-
-#captchaForm .button {
-
-    width: 100%;
-}
-
-
-/* =========================================================
-   MENSAJE DEL CAPTCHA
-========================================================= */
-
-.captcha-message {
-
-    min-height: 20px;
-
-    margin: 0 !important;
-
-    font-size: 0.9rem;
-
     text-align: center;
-}
-
-
-/* =========================================================
-   TEXTO DEBAJO DEL SOBRE
-========================================================= */
-
-.envelope-hint {
-
-    margin-top: 25px;
-
-    text-align: center;
-
-    font-size: 0.9rem;
-
-    opacity: 0.75;
 
     transition:
-        opacity 0.4s ease;
+        opacity 0.5s ease,
+        transform 0.5s ease;
 }
 
 
-.envelope-open .envelope-hint {
+/* Cuando la carta aparece,
+   escondemos el CAPTCHA */
+
+.captcha-card.hidden {
 
     opacity: 0;
+
+    transform:
+        translateY(-20px);
+
+    pointer-events: none;
 }
 
 
@@ -365,189 +227,39 @@
 
 @media (max-width: 600px) {
 
-    .envelope {
+    .love-letter {
 
-        width: 88vw;
-
-        max-width: 390px;
+        padding: 12px;
     }
 
 
-    .letter-inside {
+    .love-letter-paper {
 
-        width: 76%;
+        width: 94vw;
 
-        min-height: 220px;
+        max-height: 88vh;
 
-        padding: 22px 17px;
+        padding:
+            35px 24px;
     }
 
 
-    .envelope-open .letter-inside {
+    .love-letter-paper h2 {
 
-        transform:
-            translateX(-50%)
-            translateY(-82%);
+        font-size: 2rem;
     }
 
 
-    .letter-inside h1 {
+    .love-letter-paper p {
 
-        font-size: 1.25rem;
+        font-size: 0.98rem;
+
+        line-height: 1.7;
     }
+
 }
 
 
-/* =========================================================
-   MÓVILES PEQUEÑOS
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .envelope {
-
-        width: 90vw;
-    }
-
-
-    .letter-inside {
-
-        width: 74%;
-
-        min-height: 205px;
-
-        padding: 18px 14px;
-    }
-
-
-    .envelope-open .letter-inside {
-
-        transform:
-            translateX(-50%)
-            translateY(-72%);
-    }
-}
-
-
-/* =========================================================
-   PANTALLAS CON POCA ALTURA
-========================================================= */
-
-@media (max-height: 650px) {
-
-    .letter-inside {
-
-        min-height: 190px;
-
-        padding: 16px 15px;
-    }
-
-
-    .envelope-open .letter-inside {
-
-        transform:
-            translateX(-50%)
-            translateY(-65%);
-    }
-}
-```
-
-
-/* =========================================
-   CAPTCHA
-========================================= */
-
-#captchaForm {
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    gap: 12px;
-
-    width: 100%;
-}
-
-#captchaAnswer {
-    width: 100%;
-
-    box-sizing: border-box;
-
-    padding: 12px 15px;
-
-    border: 1px solid rgba(0, 0, 0, 0.15);
-
-    border-radius: 8px;
-
-    font-size: 1rem;
-
-    outline: none;
-}
-
-#captchaAnswer:focus {
-    border-color: #c96b83;
-}
-
-#captchaForm .button {
-    width: 100%;
-}
-
-
-/* =========================================
-   MÓVILES
-========================================= */
-
-@media (max-width: 600px) {
-
-    .letter-inside {
-
-        width: 82vw;
-
-        max-width: 360px;
-
-        max-height: 65vh;
-
-        padding: 24px 18px;
-    }
-
-    .envelope-open .letter-inside {
-
-        /*
-         * En móvil la subimos menos para que
-         * nunca se vaya demasiado arriba.
-         */
-        transform:
-            translateX(-50%)
-            translateY(-70%);
-    }
-
-    .letter-inside h1 {
-        font-size: 1.35rem;
-    }
-}
-
-
-/* =========================================
-   PANTALLAS MUY PEQUEÑAS
-========================================= */
-
-@media (max-height: 650px) {
-
-    .letter-inside {
-
-        max-height: 55vh;
-
-        padding: 18px 15px;
-    }
-
-    .envelope-open .letter-inside {
-
-        transform:
-            translateX(-50%)
-            translateY(-60%);
-    }
-}
 /* =========================================
    VARIABLES
 ========================================= */
