@@ -67,12 +67,48 @@ if (heartsContainer) {
 
 
 /* =====================================================
-   SOBRE DE LA PORTADA
+   SOBRE + CAPTCHA + CARTA
 ===================================================== */
+
+/*
+   El sobre ya NO contiene la carta.
+
+   El HTML tiene:
+
+   #envelope
+        ↓
+   #captchaCard
+        ↓
+   #loveLetter
+*/
+
 
 const envelope =
     document.querySelector("#envelope");
 
+
+const captchaCard =
+    document.querySelector("#captchaCard");
+
+
+const captchaForm =
+    document.querySelector("#captchaForm");
+
+
+const loveLetter =
+    document.querySelector("#loveLetter");
+
+
+const continueLetter =
+    document.querySelector("#continueLetter");
+
+
+let envelopeOpened = false;
+
+
+/* =====================================================
+   ABRIR SOBRE
+===================================================== */
 
 if (envelope) {
 
@@ -80,9 +116,70 @@ if (envelope) {
         "click",
         function () {
 
+            /*
+             * Evitamos que pueda abrirse
+             * varias veces.
+             */
+
+            if (envelopeOpened) {
+                return;
+            }
+
+
+            envelopeOpened = true;
+
+
+            /*
+             * Añadimos la clase que activa
+             * la animación del sobre.
+             */
+
             envelope.classList.add(
                 "envelope-open"
             );
+
+
+            /*
+             * Ocultamos el texto
+             * "Pulsa el sobre..."
+             */
+
+            const hint =
+                document.querySelector(
+                    ".envelope-hint"
+                );
+
+
+            if (hint) {
+
+                hint.style.opacity =
+                    "0";
+
+                hint.style.transition =
+                    "opacity .4s ease";
+
+            }
+
+
+            /*
+             * Después de abrirse el sobre,
+             * mostramos la pregunta.
+             */
+
+            if (captchaCard) {
+
+                setTimeout(
+                    function () {
+
+                        captchaCard.classList.add(
+                            "visible"
+                        );
+
+                    },
+                    500
+                );
+
+            }
 
         }
     );
@@ -94,10 +191,6 @@ if (envelope) {
    CAPTCHA
 ===================================================== */
 
-const captchaForm =
-    document.querySelector("#captchaForm");
-
-
 if (captchaForm) {
 
     captchaForm.addEventListener(
@@ -106,15 +199,11 @@ if (captchaForm) {
 
             event.preventDefault();
 
-            event.stopPropagation();
 
-
-            const answer =
-                document
-                    .querySelector("#captchaAnswer")
-                    .value
-                    .trim()
-                    .toLowerCase();
+            const input =
+                document.querySelector(
+                    "#captchaAnswer"
+                );
 
 
             const message =
@@ -122,6 +211,27 @@ if (captchaForm) {
                     "#captchaMessage"
                 );
 
+
+            if (!input || !message) {
+                return;
+            }
+
+
+            /*
+             * Convertimos la respuesta
+             * a minúsculas y eliminamos
+             * espacios innecesarios.
+             */
+
+            const answer =
+                input.value
+                    .trim()
+                    .toLowerCase();
+
+
+            /*
+             * Respuestas aceptadas.
+             */
 
             const correctAnswers = [
 
@@ -131,6 +241,10 @@ if (captchaForm) {
 
             ];
 
+
+            /* =================================================
+               RESPUESTA CORRECTA
+            ================================================== */
 
             if (
                 correctAnswers.includes(
@@ -142,42 +256,178 @@ if (captchaForm) {
                     "Correcto ♥";
 
 
-                envelope.classList.add(
-                    "envelope-open"
+                message.classList.add(
+                    "correct"
                 );
 
+
+                /*
+                 * Desactivamos el input.
+                 */
+
+                input.disabled = true;
+
+
+                /*
+                 * Desactivamos el botón.
+                 */
+
+                const button =
+                    captchaForm.querySelector(
+                        "button"
+                    );
+
+
+                if (button) {
+
+                    button.disabled = true;
+
+                }
+
+
+                /*
+                 * Ocultamos suavemente
+                 * la pregunta.
+                 */
 
                 setTimeout(
                     function () {
 
-                        document.body.style.opacity =
-                            "0";
+                        if (captchaCard) {
 
-                        document.body.style.transition =
-                            "opacity .5s";
+                            captchaCard.classList.add(
+                                "hidden"
+                            );
 
-
-                        setTimeout(
-                            function () {
-
-                                window.location.href =
-                                    "home.html";
-
-                            },
-                            500
-                        );
+                        }
 
                     },
-                    1000
+                    500
                 );
 
 
-            } else {
+                /*
+                 * Mostramos la carta.
+                 *
+                 * La carta es independiente
+                 * del sobre.
+                 */
+
+                setTimeout(
+                    function () {
+
+                        if (loveLetter) {
+
+                            loveLetter.classList.add(
+                                "show"
+                            );
+
+                        }
+
+                    },
+                    900
+                );
+
+            }
+
+
+            /* =================================================
+               RESPUESTA INCORRECTA
+            ================================================== */
+
+            else {
 
                 message.textContent =
                     "Pista: piensa en El Barraco... 💗";
 
+
+                message.classList.remove(
+                    "correct"
+                );
+
+
+                /*
+                 * Animación de error.
+                 */
+
+                if (captchaCard) {
+
+                    captchaCard.classList.remove(
+                        "captcha-error"
+                    );
+
+
+                    /*
+                     * Fuerza al navegador a
+                     * reiniciar la animación.
+                     */
+
+                    void captchaCard.offsetWidth;
+
+
+                    captchaCard.classList.add(
+                        "captcha-error"
+                    );
+
+                }
+
             }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CONTINUAR DESDE LA CARTA
+===================================================== */
+
+if (continueLetter) {
+
+    continueLetter.addEventListener(
+        "click",
+        function () {
+
+            /*
+             * Desaparece la carta.
+             */
+
+            if (loveLetter) {
+
+                loveLetter.classList.remove(
+                    "show"
+                );
+
+            }
+
+
+            /*
+             * Transición de salida
+             * de toda la página.
+             */
+
+            document.body.style.opacity =
+                "0";
+
+
+            document.body.style.transition =
+                "opacity .6s ease";
+
+
+            /*
+             * Vamos a home.html.
+             */
+
+            setTimeout(
+                function () {
+
+                    window.location.href =
+                        "home.html";
+
+                },
+                600
+            );
 
         }
     );
@@ -249,6 +499,7 @@ internalLinks.forEach(
 
                 document.body.style.opacity =
                     "0";
+
 
                 document.body.style.transition =
                     "opacity .35s";
@@ -398,13 +649,21 @@ if (modal) {
                 "click",
                 function () {
 
-                    modalTitle.textContent =
-                        "Cuando " +
-                        card.dataset.title;
+                    if (modalTitle) {
+
+                        modalTitle.textContent =
+                            "Cuando " +
+                            card.dataset.title;
+
+                    }
 
 
-                    modalMessage.textContent =
-                        card.dataset.message;
+                    if (modalMessage) {
+
+                        modalMessage.textContent =
+                            card.dataset.message;
+
+                    }
 
 
                     modal.classList.add(
@@ -424,16 +683,20 @@ if (modal) {
         );
 
 
-    closeButton.addEventListener(
-        "click",
-        function () {
+    if (closeButton) {
 
-            modal.classList.remove(
-                "active"
-            );
+        closeButton.addEventListener(
+            "click",
+            function () {
 
-        }
-    );
+                modal.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+    }
 
 
     modal.addEventListener(
@@ -496,6 +759,7 @@ if (quiz) {
 
                     answered++;
 
+
                     score +=
                         Number(
                             selected.value
@@ -510,6 +774,11 @@ if (quiz) {
                 document.querySelector(
                     "#quizResult"
                 );
+
+
+            if (!result) {
+                return;
+            }
 
 
             result.hidden = false;
@@ -550,7 +819,9 @@ if (quiz) {
 
                 };
 
-            } else if (score <= 3) {
+            }
+
+            else if (score <= 3) {
 
                 resultData = {
 
@@ -562,7 +833,9 @@ if (quiz) {
 
                 };
 
-            } else if (score <= 5) {
+            }
+
+            else if (score <= 5) {
 
                 resultData = {
 
@@ -574,7 +847,9 @@ if (quiz) {
 
                 };
 
-            } else {
+            }
+
+            else {
 
                 resultData = {
 
@@ -667,8 +942,12 @@ if (
 
             if (yesScale >= 3.2) {
 
-                finalText.textContent =
-                    "Creo que ya sabes cuál es la respuesta correcta... 😌💗";
+                if (finalText) {
+
+                    finalText.textContent =
+                        "Creo que ya sabes cuál es la respuesta correcta... 😌💗";
+
+                }
 
 
                 noButton.style.opacity =
@@ -678,10 +957,16 @@ if (
                 noButton.style.pointerEvents =
                     "none";
 
-            } else {
+            }
 
-                finalText.textContent =
-                    "Esa respuesta parece que no funciona. Prueba la otra 👀";
+            else {
+
+                if (finalText) {
+
+                    finalText.textContent =
+                        "Esa respuesta parece que no funciona. Prueba la otra 👀";
+
+                }
 
             }
 
@@ -699,15 +984,19 @@ if (
                 );
 
 
-            finalText.innerHTML =
+            if (finalText) {
 
-                `
+                finalText.innerHTML =
 
-                Sabía que dirías que sí. ♥
-                <br><br>
-                Te quiero muchísimo, An.
+                    `
 
-                `;
+                    Sabía que dirías que sí. ♥
+                    <br><br>
+                    Te quiero muchísimo, An.
+
+                    `;
+
+            }
 
 
             noButton.style.display =
@@ -715,8 +1004,8 @@ if (
 
 
             /*
-                LLUVIA DE CORAZONES
-            */
+             * LLUVIA DE CORAZONES
+             */
 
             for (
                 let i = 0;
