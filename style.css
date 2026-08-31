@@ -8,6 +8,9 @@
 
 /* El sobre sirve como referencia para la animación */
 .envelope {
+    width: min(420px, 88vw);
+    aspect-ratio: 3 / 2;
+    height: auto;
     position: relative;
 }
 
