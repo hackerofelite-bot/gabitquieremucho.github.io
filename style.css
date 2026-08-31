@@ -2,7 +2,230 @@
     'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap'
 );
 
+/* =========================================
+   CARTA AL ABRIR EL SOBRE
+========================================= */
 
+/* El sobre sirve como referencia para la animación */
+.envelope {
+    position: relative;
+}
+
+/* =========================================
+   CARTA CERRADA
+========================================= */
+
+.letter-inside {
+    position: absolute;
+
+    left: 50%;
+    bottom: 8%;
+
+    width: min(420px, 85vw);
+    max-height: 70vh;
+
+    box-sizing: border-box;
+
+    padding: 30px 25px;
+
+    overflow-y: auto;
+
+    background: #fffaf7;
+
+    border-radius: 6px;
+
+    z-index: 2;
+
+    /* Centrada horizontalmente */
+    transform: translateX(-50%);
+
+    /* La carta empieza dentro del sobre */
+    opacity: 1;
+
+    transition:
+        transform 0.9s cubic-bezier(.22, .61, .36, 1),
+        opacity 0.4s ease;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================
+   CARTA ABIERTA
+========================================= */
+
+.envelope-open .letter-inside {
+
+    /*
+     * La carta sube, pero no demasiado.
+     * 100% significa aproximadamente su propia altura.
+     */
+    transform:
+        translateX(-50%)
+        translateY(-85%);
+
+    opacity: 1;
+
+    z-index: 20;
+}
+
+
+/* =========================================
+   PARTES DEL SOBRE
+========================================= */
+
+/*
+ * Cuando se abre, estas partes quedan detrás
+ * de la carta.
+ */
+
+.envelope-open .envelope-body {
+    z-index: 1;
+}
+
+.envelope-open .envelope-flap {
+    z-index: 1;
+}
+
+.envelope-open .envelope-seal {
+    z-index: 0;
+}
+
+
+/* =========================================
+   CONTENIDO DE LA CARTA
+========================================= */
+
+.letter-inside h1 {
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+    font-size: clamp(1.4rem, 5vw, 2rem);
+
+    line-height: 1.2;
+
+    text-align: center;
+}
+
+.letter-inside p {
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+.letter-inside .small-title {
+    display: block;
+
+    text-align: center;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 2px;
+}
+
+.letter-inside .ornament {
+    text-align: center;
+
+    margin: 15px 0;
+}
+
+
+/* =========================================
+   CAPTCHA
+========================================= */
+
+#captchaForm {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+}
+
+#captchaAnswer {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px 15px;
+
+    border: 1px solid rgba(0, 0, 0, 0.15);
+
+    border-radius: 8px;
+
+    font-size: 1rem;
+
+    outline: none;
+}
+
+#captchaAnswer:focus {
+    border-color: #c96b83;
+}
+
+#captchaForm .button {
+    width: 100%;
+}
+
+
+/* =========================================
+   MÓVILES
+========================================= */
+
+@media (max-width: 600px) {
+
+    .letter-inside {
+
+        width: 82vw;
+
+        max-width: 360px;
+
+        max-height: 65vh;
+
+        padding: 24px 18px;
+    }
+
+    .envelope-open .letter-inside {
+
+        /*
+         * En móvil la subimos menos para que
+         * nunca se vaya demasiado arriba.
+         */
+        transform:
+            translateX(-50%)
+            translateY(-70%);
+    }
+
+    .letter-inside h1 {
+        font-size: 1.35rem;
+    }
+}
+
+
+/* =========================================
+   PANTALLAS MUY PEQUEÑAS
+========================================= */
+
+@media (max-height: 650px) {
+
+    .letter-inside {
+
+        max-height: 55vh;
+
+        padding: 18px 15px;
+    }
+
+    .envelope-open .letter-inside {
+
+        transform:
+            translateX(-50%)
+            translateY(-60%);
+    }
+}
 /* =========================================
    VARIABLES
 ========================================= */
@@ -2165,56 +2388,4 @@ footer {
 
     }
 
-}
-
-/* =========================================
-   CARTA AL ABRIR EL SOBRE
-========================================= */
-
-.envelope {
-    position: relative;
-}
-
-/* La carta está inicialmente dentro del sobre */
-.letter-inside {
-    position: absolute;
-    z-index: 2;
-
-    left: 50%;
-    transform: translateX(-50%);
-
-    transition:
-        transform 0.9s ease,
-        z-index 0s linear 0.45s;
-
-    /* Mantiene la carta dentro del sobre */
-    bottom: 0;
-}
-
-/* Cuando el sobre se abre, la carta sale hacia arriba */
-.envelope-open .letter-inside {
-    z-index: 20;
-
-    transform:
-        translateX(-50%)
-        translateY(-115%);
-    
-    transition:
-        transform 0.9s ease,
-        z-index 0s linear 0s;
-}
-
-/* La solapa queda detrás de la carta cuando se abre */
-.envelope-open .envelope-flap {
-    z-index: 1;
-}
-
-/* El cuerpo del sobre también queda detrás */
-.envelope-open .envelope-body {
-    z-index: 1;
-}
-
-/* El sello queda detrás al abrir */
-.envelope-open .envelope-seal {
-    z-index: 0;
 }
