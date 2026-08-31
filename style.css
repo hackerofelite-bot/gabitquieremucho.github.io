@@ -28,21 +28,10 @@
 ========================================================= */
 
 .envelope {
-    position: relative;
-
-    width: min(430px, 88vw);
-    aspect-ratio: 1.55 / 1;
-
+    width: min(500px, 92vw);
+    aspect-ratio: 1.65 / 1;
     margin: 0 auto;
-
-    /*
-     * Permitimos que la carta pueda salir cuando
-     * se abre, pero las partes del sobre controlan
-     * lo que queda visible.
-     */
-    overflow: visible;
-
-    perspective: 1000px;
+    position: relative;
 }
 
 
