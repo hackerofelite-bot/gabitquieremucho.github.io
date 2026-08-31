@@ -1,168 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    
-    <!-- Adaptación a móviles -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Título de la página -->
-    <title>Mi página web</title>
-
-    <!-- Descripción -->
-    <meta name="description" content="Mi página web personalizada">
-
-    <!-- Hoja de estilos -->
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-    <!-- =========================
-         CABECERA
-    ========================== -->
-    <header>
-        <nav>
-            <div class="logo">
-                Mi Web
-            </div>
-
-            <div class="menu">
-                <a href="#inicio">Inicio</a>
-                <a href="#sobre-mi">Sobre mí</a>
-                <a href="#contacto">Contacto</a>
-            </div>
-        </nav>
-    </header>
-
-
-    <!-- =========================
-         CONTENIDO PRINCIPAL
-    ========================== -->
-    <main>
-
-        <!-- INICIO -->
-        <section id="inicio" class="hero">
-
-            <div class="hero-content">
-                <h1>Bienvenido a mi página</h1>
-
-                <p>
-                    Esta es mi página web completamente personalizada.
-                </p>
-
-                <a href="#sobre-mi" class="boton">
-                    Descubrir más
-                </a>
-            </div>
-
-        </section>
-
-
-        <!-- SOBRE MÍ -->
-        <section id="sobre-mi" class="seccion">
-
-            <h2>Sobre mí</h2>
-
-            <p>
-                Aquí puedes escribir cualquier cosa que quieras.
-                Puedes cambiar completamente este texto.
-            </p>
-
-        </section>
-
-
-        <!-- CONTENIDO PERSONALIZABLE -->
-        <section class="seccion">
-
-            <h2>Mi contenido</h2>
-
-            <div class="tarjetas">
-
-                <article class="tarjeta">
-                    <h3>Sección 1</h3>
-                    <p>
-                        Puedes poner aquí información, imágenes,
-                        vídeos, enlaces, etc.
-                    </p>
-                </article>
-
-                <article class="tarjeta">
-                    <h3>Sección 2</h3>
-                    <p>
-                        Otra sección completamente personalizable.
-                    </p>
-                </article>
-
-                <article class="tarjeta">
-                    <h3>Sección 3</h3>
-                    <p>
-                        Puedes añadir tantas secciones como quieras.
-                    </p>
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- CONTACTO -->
-        <section id="contacto" class="seccion">
-
-            <h2>Contacto</h2>
-
-            <p>
-                Puedes poner aquí tus redes sociales,
-                correo, formulario, enlaces, etc.
-            </p>
-
-            <a href="mailto:correo@ejemplo.com" class="boton">
-                Contactar
-            </a>
-
-        </section>
-
-    </main>
-
-
-    <!-- =========================
-         PIE DE PÁGINA
-    ========================== -->
-    <footer>
-
-        <p>
-            © 2026 Mi página web
-        </p>
-
-    </footer>
-
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
-
-</body><!DOCTYPE html>
-<html lang="es">
 
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Una carta para An ♥</title>
+
+    <meta
+        name="description"
+        content="Una pequeña sorpresa para An ♥"
+    >
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="entrance-page">
 
+    <!-- =========================================
+         CORAZONES FLOTANTES
+    ========================================== -->
+
     <div class="floating-hearts"></div>
+
+
+    <!-- =========================================
+         PORTADA / SOBRE
+    ========================================== -->
 
     <main class="entrance">
 
-        <div class="envelope-container" id="envelope">
+        <div
+            class="envelope-container"
+            id="envelope"
+        >
 
             <div class="envelope">
 
-                <!-- CARTA DENTRO DEL SOBRE -->
+                <!-- =================================
+                     CARTA DENTRO DEL SOBRE
+                ================================== -->
 
                 <div class="letter-inside">
 
@@ -179,8 +57,14 @@
                     </div>
 
                     <p>
-                        Escribe la respuesta para abrir nuestra carta.
+                        Escribe la respuesta para abrir
+                        nuestra carta.
                     </p>
+
+
+                    <!-- =============================
+                         CAPTCHA
+                    ============================== -->
 
                     <form id="captchaForm">
 
@@ -191,17 +75,26 @@
                             autocomplete="off"
                         >
 
-                        <button type="submit" class="button primary">
+                        <button
+                            type="submit"
+                            class="button primary"
+                        >
                             Continuar ♥
                         </button>
 
-                        <p id="captchaMessage" class="captcha-message"></p>
+                        <p
+                            id="captchaMessage"
+                            class="captcha-message"
+                        ></p>
 
                     </form>
 
                 </div>
 
-                <!-- PARTE DEL SOBRE -->
+
+                <!-- =================================
+                     SOBRE
+                ================================== -->
 
                 <div class="envelope-body"></div>
 
@@ -213,6 +106,7 @@
 
             </div>
 
+
             <p class="envelope-hint">
                 Pulsa el sobre para abrirlo
             </p>
@@ -221,9 +115,15 @@
 
     </main>
 
+
+    <!-- =========================================
+         JAVASCRIPT
+         
+         IMPORTANTE:
+         Solo se carga UNA vez.
+    ========================================== -->
+
     <script src="script.js"></script>
 
 </body>
 </html>
-</html>
-```
