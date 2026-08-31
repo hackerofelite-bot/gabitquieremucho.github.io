@@ -2,9 +2,13 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Una carta para An ♥</title>
 
@@ -13,117 +17,237 @@
         content="Una pequeña sorpresa para An ♥"
     >
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body class="entrance-page">
 
-    <!-- =========================================
+
+    <!-- =====================================================
          CORAZONES FLOTANTES
-    ========================================== -->
+    ====================================================== -->
 
     <div class="floating-hearts"></div>
 
 
-    <!-- =========================================
-         PORTADA / SOBRE
-    ========================================== -->
+    <!-- =====================================================
+         PORTADA
+    ====================================================== -->
 
     <main class="entrance">
 
+
+        <!-- =================================================
+             SOBRE
+        ================================================== -->
+
         <div
             class="envelope-container"
-            id="envelope"
+            id="envelopeContainer"
         >
 
-            <div class="envelope">
 
-                <!-- =================================
-                     CARTA DENTRO DEL SOBRE
-                ================================== -->
-
-                <div class="letter-inside">
-
-                    <span class="small-title">
-                        UNA PEQUEÑA PREGUNTA
-                    </span>
-
-                    <h1>
-                        ¿Dónde nos conocimos?
-                    </h1>
-
-                    <div class="ornament">
-                        ♥
-                    </div>
-
-                    <p>
-                        Escribe la respuesta para abrir
-                        nuestra carta.
-                    </p>
+            <div
+                class="envelope"
+                id="envelope"
+            >
 
 
-                    <!-- =============================
-                         CAPTCHA
-                    ============================== -->
-
-                    <form id="captchaForm">
-
-                        <input
-                            type="text"
-                            id="captchaAnswer"
-                            placeholder="Escribe aquí..."
-                            autocomplete="off"
-                        >
-
-                        <button
-                            type="submit"
-                            class="button primary"
-                        >
-                            Continuar ♥
-                        </button>
-
-                        <p
-                            id="captchaMessage"
-                            class="captcha-message"
-                        ></p>
-
-                    </form>
-
-                </div>
-
-
-                <!-- =================================
-                     SOBRE
-                ================================== -->
+                <!-- CUERPO DEL SOBRE -->
 
                 <div class="envelope-body"></div>
 
+
+                <!-- SOLAPA -->
+
                 <div class="envelope-flap"></div>
+
+
+                <!-- SELLO -->
 
                 <div class="envelope-seal">
                     ♥
                 </div>
 
+
             </div>
 
 
             <p class="envelope-hint">
-                Pulsa el sobre para abrirlo
+                Pulsa el sobre para abrirlo ♥
             </p>
 
+
         </div>
+
+
+
+        <!-- =================================================
+             PREGUNTA / CAPTCHA
+        ================================================== -->
+
+        <section
+            class="captcha-card"
+            id="captchaCard"
+        >
+
+
+            <span class="small-title">
+                UNA PEQUEÑA PREGUNTA
+            </span>
+
+
+            <h1>
+                ¿Dónde nos conocimos?
+            </h1>
+
+
+            <div class="ornament">
+                ♥
+            </div>
+
+
+            <p>
+                Responde correctamente para abrir
+                nuestra carta.
+            </p>
+
+
+            <form id="captchaForm">
+
+
+                <input
+                    type="text"
+                    id="captchaAnswer"
+                    placeholder="Escribe aquí..."
+                    autocomplete="off"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="button primary"
+                >
+                    Continuar ♥
+                </button>
+
+
+                <p
+                    id="captchaMessage"
+                    class="captcha-message"
+                ></p>
+
+
+            </form>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             CARTA
+             
+             IMPORTANTE:
+             Esta carta está FUERA del sobre.
+             Así nunca puede quedar detrás de él.
+        ================================================== -->
+
+        <section
+            class="love-letter"
+            id="loveLetter"
+        >
+
+
+            <div class="love-letter-paper">
+
+
+                <span class="letter-small-title">
+                    PARA TI, AN ♥
+                </span>
+
+
+                <div class="letter-heart">
+                    ♥
+                </div>
+
+
+                <h2>
+                    Mi niña
+                </h2>
+
+
+                <!-- =========================================
+                     AQUÍ PUEDES ESCRIBIR VUESTRO TEXTO
+                ========================================== -->
+
+                <p>
+                    AQUÍ PUEDES ESCRIBIR VUESTRO TEXTO.
+                </p>
+
+
+                <p>
+                    Puedes poner aquí todo lo que quieras
+                    decirle. Esta carta puede ser tan larga
+                    como quieras.
+                </p>
+
+
+                <p>
+                    Otro párrafo de vuestra historia,
+                    recuerdos o cualquier cosa que quieras
+                    contarle.
+                </p>
+
+
+                <!-- =========================================
+                     FIRMA
+                ========================================== -->
+
+                <div class="letter-signature">
+
+                    Con todo mi amor,<br>
+
+                    Gabriel ♥
+
+                </div>
+
+
+                <!-- =========================================
+                     CONTINUAR
+                ========================================== -->
+
+                <button
+                    class="button primary"
+                    id="continueLetter"
+                    type="button"
+                >
+                    Continuar ♥
+                </button>
+
+
+            </div>
+
+
+        </section>
+
 
     </main>
 
 
-    <!-- =========================================
+    <!-- =====================================================
          JAVASCRIPT
-         
-         IMPORTANTE:
-         Solo se carga UNA vez.
-    ========================================== -->
+    ====================================================== -->
 
     <script src="script.js"></script>
 
+
 </body>
+
 </html>
