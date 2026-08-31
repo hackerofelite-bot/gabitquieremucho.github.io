@@ -2166,3 +2166,55 @@ footer {
     }
 
 }
+
+/* =========================================
+   CARTA AL ABRIR EL SOBRE
+========================================= */
+
+.envelope {
+    position: relative;
+}
+
+/* La carta está inicialmente dentro del sobre */
+.letter-inside {
+    position: absolute;
+    z-index: 2;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    transition:
+        transform 0.9s ease,
+        z-index 0s linear 0.45s;
+
+    /* Mantiene la carta dentro del sobre */
+    bottom: 0;
+}
+
+/* Cuando el sobre se abre, la carta sale hacia arriba */
+.envelope-open .letter-inside {
+    z-index: 20;
+
+    transform:
+        translateX(-50%)
+        translateY(-115%);
+    
+    transition:
+        transform 0.9s ease,
+        z-index 0s linear 0s;
+}
+
+/* La solapa queda detrás de la carta cuando se abre */
+.envelope-open .envelope-flap {
+    z-index: 1;
+}
+
+/* El cuerpo del sobre también queda detrás */
+.envelope-open .envelope-body {
+    z-index: 1;
+}
+
+/* El sello queda detrás al abrir */
+.envelope-open .envelope-seal {
+    z-index: 0;
+}
