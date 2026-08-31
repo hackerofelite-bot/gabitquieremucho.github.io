@@ -15,62 +15,81 @@
 }
 
 /* =========================================
-   CARTA CERRADA
+   SOBRE CERRADO
 ========================================= */
+
+.envelope {
+    position: relative;
+    overflow: hidden;
+}
 
 .letter-inside {
     position: absolute;
+    z-index: 1;
 
     left: 50%;
     bottom: 8%;
 
     width: min(420px, 85vw);
-    max-height: 70vh;
-
     box-sizing: border-box;
 
-    padding: 30px 25px;
-
-    overflow-y: auto;
-
-    background: #fffaf7;
-
-    border-radius: 6px;
-
-    z-index: 2;
-
-    /* Centrada horizontalmente */
     transform: translateX(-50%);
-
-    /* La carta empieza dentro del sobre */
-    opacity: 1;
 
     transition:
         transform 0.9s cubic-bezier(.22, .61, .36, 1),
-        opacity 0.4s ease;
+        z-index 0s linear 0.45s;
+}
 
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.12);
+/* El cuerpo del sobre tapa la carta */
+.envelope-body {
+    position: absolute;
+    z-index: 5;
+}
+
+/* La solapa también queda por delante */
+.envelope-flap {
+    position: absolute;
+    z-index: 6;
+}
+
+/* El sello queda por encima de todo */
+.envelope-seal {
+    position: absolute;
+    z-index: 10;
 }
 
 
 /* =========================================
-   CARTA ABIERTA
+   SOBRE ABIERTO
 ========================================= */
 
-.envelope-open .letter-inside {
+.envelope-open {
+    overflow: visible;
+}
 
-    /*
-     * La carta sube, pero no demasiado.
-     * 100% significa aproximadamente su propia altura.
-     */
+.envelope-open .letter-inside {
+    z-index: 20;
+
     transform:
         translateX(-50%)
         translateY(-85%);
 
-    opacity: 1;
+    transition:
+        transform 0.9s cubic-bezier(.22, .61, .36, 1),
+        z-index 0s;
+}
 
-    z-index: 20;
+/* Al abrir, las partes del sobre pasan detrás */
+.envelope-open .envelope-body {
+    z-index: 1;
+}
+
+.envelope-open .envelope-flap {
+    z-index: 2;
+}
+
+.envelope-open .envelope-seal {
+    z-index: 0;
 }
 
 
