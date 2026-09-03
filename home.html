@@ -2,52 +2,42 @@
 <html lang="es">
 
 <head>
-    
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>An, te quiero ♥</title>
+    <title>Para An ♥</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
+    <!-- =====================================================
+         CORAZONES
+    ====================================================== -->
+
     <div class="floating-hearts"></div>
 
-    <!-- MENÚ -->
+
+    <!-- =====================================================
+         CABECERA
+    ====================================================== -->
 
     <header class="site-header">
 
         <a href="home.html" class="logo">
-            A <span>♥</span> G
+            Gabi <span>♥</span> An
         </a>
 
-        <button class="mobile-menu">
-            ☰
-        </button>
 
         <nav class="navigation">
 
-            <a href="home.html">
+            <a href="home.html" class="active">
                 Inicio
             </a>
 
             <a href="historia.html">
                 Historia
-            </a>
-
-            <a href="recuerdos.html">
-                Recuerdos
-            </a>
-
-            <a href="fuera-juntos.html">
-                Fuera juntos
             </a>
 
             <a href="musica.html">
@@ -68,170 +58,208 @@
 
         </nav>
 
+
+        <button class="mobile-menu" aria-label="Abrir menú">
+            ☰
+        </button>
+
     </header>
 
 
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
     <main>
 
-        <!-- CARTA PRINCIPAL -->
 
         <section class="hero-letter">
 
-            <div class="main-letter">
+            <span class="small-title">
+                PARA MI CHICA
+            </span>
+
+            <div class="ornament">
+                ♥
+            </div>
+
+            <h1>
+                An, <em>te quiero.</em>
+            </h1>
+
+            <p class="hero-text">
+                Hay muchas formas de guardar lo que hemos vivido,
+                pero yo prefiero una: recordarlo contigo.
+            </p>
+
+            <div class="signature">
+                Gabi ♥
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             HISTORIA DESTACADA
+        ================================================== -->
+
+        <section class="history-feature">
+
+            <div class="history-feature-image">
+
+                <img
+                    src="images/20260831_184112.jpg"
+                    alt="Nuestra historia"
+                >
+
+                <div class="history-image-overlay">
+                    <span>
+                        DESDE EL 14 · 09 · 2025
+                    </span>
+
+                    <strong>
+                        16 capítulos
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="history-feature-content">
 
                 <span class="small-title">
-                    PARA MI CHICA, AN
+                    LO MÁS IMPORTANTE
                 </span>
-
-                <h1>
-                    An,
-                    <br>
-                    <em>te quiero.</em>
-                </h1>
 
                 <div class="ornament">
                     ♥
                 </div>
 
-                <p class="hero-text">
+                <h2>
+                    Nuestra historia
+                </h2>
 
-                    Eres mis días, mis momentos favoritos
-                    y una de las mejores cosas que me han
-                    pasado.
-
+                <p class="history-lead">
+                    No quería que nuestra historia fuera simplemente
+                    una colección de recuerdos perdidos entre fotos.
                 </p>
 
-                <!--
-                    ESCRIBE AQUÍ UNA FRASE PERSONAL
-                -->
-
-                <p class="signature">
-                    — G
+                <p>
+                    Quería guardar cada momento, cada lugar,
+                    cada cita, cada tontería y cada día que nos
+                    ha ido llevando hasta donde estamos ahora.
                 </p>
+
+                <p>
+                    Y lo mejor es que todavía no hemos llegado
+                    al último capítulo.
+                </p>
+
+
+                <a
+                    href="historia.html"
+                    class="button primary history-button"
+                >
+                    Volver a vivirla ♥
+                </a>
 
             </div>
 
         </section>
 
 
-        <!-- ENLACES -->
+        <!-- =================================================
+             FRASE
+        ================================================== -->
 
-        <section class="section">
+        <section class="history-quote">
+
+            <div class="quote-line"></div>
+
+            <p>
+                "Si pudiera volver atrás, elegiría volver
+                a vivir cada uno de nuestros primeros días."
+            </p>
+
+            <span>
+                — Gabi
+            </span>
+
+            <div class="quote-line"></div>
+
+        </section>
+
+
+        <!-- =================================================
+             RESTO DE SECCIONES
+        ================================================== -->
+
+        <section class="secondary-section">
 
             <div class="section-heading">
 
                 <span class="small-title">
-                    NO NOS PERDAMOS, MI CHICA
+                    Y AÚN QUEDAN COSAS POR DESCUBRIR
                 </span>
 
                 <h2>
-                    He puesto aquí un poco de nosotros.
+                    Nuestro pequeño mundo
                 </h2>
 
                 <p>
-                    Como un libro que puedes leer,
-                    cada capítulo guarda una parte diferente
-                    de nuestra historia.
+                    Algunas cosas no necesitan ser tan grandes
+                    como nuestra historia para ser especiales.
                 </p>
 
             </div>
 
 
-            <div class="portal-grid">
+            <div class="portal-grid secondary-portals">
 
 
-                <a href="historia.html" class="portal">
+                <!-- MÚSICA -->
+
+                <a
+                    href="musica.html"
+                    class="portal portal-secondary"
+                >
 
                     <span class="portal-number">
                         01
                     </span>
 
                     <div class="portal-icon">
-                        ⏳
+                        ♪
                     </div>
 
                     <h3>
-                        Nuestra historia
+                        Música
                     </h3>
 
                     <p>
-                        Desde el principio hasta hoy.
+                        Canciones que me hacen pensar en nosotros.
                     </p>
+
+                    <span class="portal-arrow">
+                        →
+                    </span>
 
                 </a>
 
 
-                <a href="recuerdos.html" class="portal">
+                <!-- PELIS -->
+
+                <a
+                    href="pelis.html"
+                    class="portal portal-secondary"
+                >
 
                     <span class="portal-number">
                         02
                     </span>
 
                     <div class="portal-icon">
-                        📷
-                    </div>
-
-                    <h3>
-                        Recuerdos
-                    </h3>
-
-                    <p>
-                        Momentos que quiero guardar.
-                    </p>
-
-                </a>
-
-
-                <a href="fuera-juntos.html" class="portal">
-
-                    <span class="portal-number">
-                        03
-                    </span>
-
-                    <div class="portal-icon">
-                        🌅
-                    </div>
-
-                    <h3>
-                        Fuera juntos
-                    </h3>
-
-                    <p>
-                        Todas las cosas que todavía nos quedan por hacer.
-                    </p>
-
-                </a>
-
-
-                <a href="musica.html" class="portal">
-
-                    <span class="portal-number">
-                        04
-                    </span>
-
-                    <div class="portal-icon">
-                        🎧
-                    </div>
-
-                    <h3>
-                        Nuestra música
-                    </h3>
-
-                    <p>
-                        La banda sonora de nosotros.
-                    </p>
-
-                </a>
-
-
-                <a href="pelis.html" class="portal">
-
-                    <span class="portal-number">
-                        05
-                    </span>
-
-                    <div class="portal-icon">
-                        🍿
+                        ◉
                     </div>
 
                     <h3>
@@ -239,20 +267,29 @@
                     </h3>
 
                     <p>
-                        Todas las que tenemos pendientes para ver juntos.
+                        Las que todavía nos quedan por ver juntos.
                     </p>
+
+                    <span class="portal-arrow">
+                        →
+                    </span>
 
                 </a>
 
 
-                <a href="abre-cuando.html" class="portal">
+                <!-- ABRE CUANDO -->
+
+                <a
+                    href="abre-cuando.html"
+                    class="portal portal-secondary"
+                >
 
                     <span class="portal-number">
-                        06
+                        03
                     </span>
 
                     <div class="portal-icon">
-                        💌
+                        ♡
                     </div>
 
                     <h3>
@@ -263,17 +300,26 @@
                         Pequeñas cartas para distintos momentos.
                     </p>
 
+                    <span class="portal-arrow">
+                        →
+                    </span>
+
                 </a>
 
 
-                <a href="test.html" class="portal">
+                <!-- TEST -->
+
+                <a
+                    href="test.html"
+                    class="portal portal-secondary"
+                >
 
                     <span class="portal-number">
-                        07
+                        04
                     </span>
 
                     <div class="portal-icon">
-                        📝
+                        ?
                     </div>
 
                     <h3>
@@ -281,29 +327,12 @@
                     </h3>
 
                     <p>
-                        A ver cuánto sabes de nosotros.
+                        A ver cuánto sabes de tu novio.
                     </p>
 
-                </a>
-
-
-                <a href="final.html" class="portal final-portal">
-
-                    <span class="portal-number">
-                        08
+                    <span class="portal-arrow">
+                        →
                     </span>
-
-                    <div class="portal-icon">
-                        ♥
-                    </div>
-
-                    <h3>
-                        Una última pregunta
-                    </h3>
-
-                    <p>
-                        Esta sí que es importante.
-                    </p>
 
                 </a>
 
@@ -313,26 +342,48 @@
         </section>
 
 
-        <!-- FRASE FINAL -->
+        <!-- =================================================
+             FINAL
+        ================================================== -->
 
-        <section class="quote-section">
+        <section class="home-final">
+
+            <span class="small-title">
+                Y TODAVÍA NO HEMOS TERMINADO
+            </span>
+
+            <h2>
+                La historia continúa.
+            </h2>
 
             <p>
-                “Todavía nos quedan muchas páginas por escribir.”
+                Así que guarda esta página,
+                porque todavía quedan muchos capítulos
+                por escribir.
             </p>
 
-            <a href="historia.html" class="button outline">
-                Seguir leyendo →
+            <a
+                href="final.html"
+                class="button outline"
+            >
+                Una última pregunta ♥
             </a>
 
         </section>
 
+
     </main>
 
 
-    <footer>
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
 
-        Hecho con amor, para An. ♥
+    <footer class="site-footer">
+
+        <p>
+            Hecho con amor para An ♥
+        </p>
 
     </footer>
 
@@ -340,4 +391,5 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>
