@@ -3570,3 +3570,631 @@ footer {
     }
 
 }
+
+/* =========================================================
+   HOME — NUEVO DISEÑO
+   Solo afecta al nuevo home.html
+========================================================= */
+
+
+/* =========================================
+   HISTORIA DESTACADA
+========================================= */
+
+.history-feature {
+
+    position: relative;
+
+    z-index: 1;
+
+    width: min(1150px, 90vw);
+
+    margin: 30px auto 110px;
+
+    display: grid;
+
+    grid-template-columns: 1.05fr 0.95fr;
+
+    background:
+        rgba(255, 255, 255, 0.78);
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 30px 80px
+        rgba(77, 35, 51, 0.14);
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================
+   IMAGEN DE HISTORIA
+========================================= */
+
+.history-feature-image {
+
+    position: relative;
+
+    min-height: 620px;
+
+    overflow: hidden;
+
+    background: var(--pink-light);
+
+}
+
+
+.history-feature-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.8s
+        cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+.history-feature:hover
+.history-feature-image img {
+
+    transform: scale(1.035);
+
+}
+
+
+/* =========================================
+   INFORMACIÓN SOBRE LA FOTO
+========================================= */
+
+.history-image-overlay {
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    padding:
+        70px 35px 30px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(45, 20, 30, 0.72)
+        );
+
+}
+
+
+.history-image-overlay span {
+
+    font-size: 0.68rem;
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+}
+
+
+.history-image-overlay strong {
+
+    font:
+        600 1.6rem var(--serif);
+
+    white-space: nowrap;
+
+}
+
+
+/* =========================================
+   CONTENIDO DE HISTORIA
+========================================= */
+
+.history-feature-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding:
+        70px 65px;
+
+}
+
+
+.history-feature-content .ornament {
+
+    justify-content: flex-start;
+
+    margin:
+        22px 0 18px;
+
+}
+
+
+.history-feature-content .ornament::before {
+
+    display: none;
+
+}
+
+
+.history-feature-content h2 {
+
+    margin-bottom: 28px;
+
+    font:
+        600 clamp(
+            3rem,
+            5vw,
+            5rem
+        ) / 0.95 var(--serif);
+
+}
+
+
+.history-feature-content p {
+
+    max-width: 480px;
+
+    color: var(--muted);
+
+    line-height: 1.8;
+
+    margin-bottom: 17px;
+
+}
+
+
+.history-feature-content .history-lead {
+
+    color: var(--text);
+
+    font:
+        1.25rem / 1.7 var(--serif);
+
+}
+
+
+.history-button {
+
+    align-self: flex-start;
+
+    margin-top: 22px;
+
+}
+
+
+/* =========================================
+   FRASE DESPUÉS DE HISTORIA
+========================================= */
+
+.history-quote {
+
+    position: relative;
+
+    z-index: 1;
+
+    width: min(900px, 90vw);
+
+    margin:
+        0 auto 120px;
+
+    text-align: center;
+
+}
+
+
+.history-quote p {
+
+    max-width: 800px;
+
+    margin:
+        25px auto;
+
+    color: var(--text);
+
+    font:
+        italic clamp(
+            1.8rem,
+            4vw,
+            2.8rem
+        ) / 1.25 var(--serif);
+
+}
+
+
+.history-quote span {
+
+    color: var(--muted);
+
+    font:
+        italic 1rem var(--serif);
+
+}
+
+
+.quote-line {
+
+    width: 90px;
+
+    height: 1px;
+
+    margin: auto;
+
+    background: var(--border);
+
+}
+
+
+/* =========================================
+   SECCIÓN SECUNDARIA DEL HOME
+========================================= */
+
+.secondary-section {
+
+    position: relative;
+
+    z-index: 1;
+
+    width: min(1150px, 90vw);
+
+    margin:
+        0 auto 100px;
+
+}
+
+
+.secondary-section .section-heading {
+
+    margin-bottom: 45px;
+
+}
+
+
+.secondary-section .section-heading h2 {
+
+    margin-top: 12px;
+
+}
+
+
+.secondary-portals {
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+}
+
+
+/* =========================================
+   PORTALES SECUNDARIOS
+========================================= */
+
+.portal-secondary {
+
+    min-height: 235px;
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.portal-secondary .portal-icon {
+
+    margin-top: 22px;
+
+}
+
+
+.portal-secondary h3 {
+
+    margin-top: 8px;
+
+}
+
+
+.portal-secondary p {
+
+    max-width: 220px;
+
+}
+
+
+.portal-arrow {
+
+    margin-top: auto;
+
+    padding-top: 20px;
+
+    color: var(--pink);
+
+    font-size: 1.25rem;
+
+    transition:
+        transform 0.25s ease;
+
+}
+
+
+.portal-secondary:hover .portal-arrow {
+
+    transform:
+        translateX(6px);
+
+}
+
+
+/* =========================================
+   FINAL DEL HOME
+========================================= */
+
+.home-final {
+
+    position: relative;
+
+    z-index: 1;
+
+    width: min(850px, 90vw);
+
+    margin:
+        30px auto 100px;
+
+    padding:
+        85px 40px;
+
+    text-align: center;
+
+    background:
+        rgba(216, 79, 120, 0.055);
+
+    border-top:
+        1px solid var(--border);
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+
+.home-final h2 {
+
+    margin:
+        15px 0 20px;
+
+    font:
+        600 clamp(
+            3rem,
+            7vw,
+            5rem
+        ) / 1 var(--serif);
+
+}
+
+
+.home-final p {
+
+    max-width: 550px;
+
+    margin:
+        0 auto 30px;
+
+    color: var(--muted);
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================================
+   HOME — RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .history-feature {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .history-feature-image {
+
+        min-height: 500px;
+
+    }
+
+
+    .history-feature-content {
+
+        padding:
+            60px 50px;
+
+    }
+
+
+    .secondary-portals {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .history-feature {
+
+        width: 90vw;
+
+        margin:
+            10px auto 80px;
+
+    }
+
+
+    .history-feature-image {
+
+        min-height: 390px;
+
+    }
+
+
+    .history-image-overlay {
+
+        padding:
+            65px 20px 22px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 5px;
+
+    }
+
+
+    .history-image-overlay strong {
+
+        font-size: 1.35rem;
+
+    }
+
+
+    .history-feature-content {
+
+        padding:
+            50px 27px;
+
+    }
+
+
+    .history-feature-content h2 {
+
+        font-size: 3.2rem;
+
+    }
+
+
+    .history-feature-content .history-lead {
+
+        font-size: 1.12rem;
+
+    }
+
+
+    .history-feature-content p {
+
+        font-size: 0.92rem;
+
+        line-height: 1.75;
+
+    }
+
+
+    .history-button {
+
+        width: 100%;
+
+        margin-top: 15px;
+
+    }
+
+
+    .history-quote {
+
+        width: 88vw;
+
+        margin-bottom: 85px;
+
+    }
+
+
+    .history-quote p {
+
+        font-size: 1.8rem;
+
+    }
+
+
+    .secondary-section {
+
+        width: 90vw;
+
+        margin-bottom: 75px;
+
+    }
+
+
+    .secondary-portals {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .portal-secondary {
+
+        min-height: 205px;
+
+    }
+
+
+    .home-final {
+
+        width: 90vw;
+
+        margin-bottom: 70px;
+
+        padding:
+            65px 25px;
+
+    }
+
+
+    .home-final h2 {
+
+        font-size: 3.3rem;
+
+    }
+
+
+    .home-final p {
+
+        font-size: 0.92rem;
+
+    }
+
+}
