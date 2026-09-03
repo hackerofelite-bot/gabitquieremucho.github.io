@@ -720,176 +720,303 @@ if (modal) {
 
 
 /* =====================================================
-   TEST
+   TEST — ¿QUÉ AN ERES HOY?
 ===================================================== */
 
-const quiz =
-    document.querySelector(
-        "#quiz"
-    );
-
+const quiz = document.querySelector("#quiz");
 
 if (quiz) {
 
-    quiz.addEventListener(
-        "submit",
-        function (event) {
+    quiz.addEventListener("submit", function (event) {
 
-            event.preventDefault();
+        event.preventDefault();
 
+        const result = document.querySelector("#quizResult");
 
-            let score = 0;
-
-            let answered = 0;
+        if (!result) return;
 
 
-            for (
-                let i = 1;
-                i <= 6;
-                i++
-            ) {
+        /*
+         * Comprobamos que las 6 preguntas
+         * hayan sido contestadas.
+         */
 
-                const selected =
-                    quiz.querySelector(
-                        `input[name="q${i}"]:checked`
-                    );
+        let answered = 0;
 
+        for (let i = 1; i <= 6; i++) {
 
-                if (selected) {
-
-                    answered++;
-
-
-                    score +=
-                        Number(
-                            selected.value
-                        );
-
-                }
-
-            }
-
-
-            const result =
-                document.querySelector(
-                    "#quizResult"
+            const selected =
+                quiz.querySelector(
+                    `input[name="q${i}"]:checked`
                 );
 
-
-            if (!result) {
-                return;
+            if (selected) {
+                answered++;
             }
+        }
 
+
+        /*
+         * Si falta alguna pregunta,
+         * no mostramos el resultado.
+         */
+
+        if (answered < 6) {
 
             result.hidden = false;
 
-
-            if (answered < 6) {
-
-                result.innerHTML = `
-
-                    <h2>
-                        Faltan respuestas 💗
-                    </h2>
-
-                    <p>
-                        Contesta todas las preguntas
-                        para descubrir tu resultado.
-                    </p>
-
-                `;
-
-                return;
-
-            }
-
-
-            let resultData;
-
-
-            if (score <= 1) {
-
-                resultData = {
-
-                    title:
-                        "“Tenemos que repasar nuestra historia” 😂",
-
-                    text:
-                        "La nota no importa. Siempre podemos volver a vivir nuestros recuerdos."
-
-                };
-
-            }
-
-            else if (score <= 3) {
-
-                resultData = {
-
-                    title:
-                        "“Estamos calentando” 💕",
-
-                    text:
-                        "Hay algunas cosas que todavía podemos descubrir el uno del otro."
-
-                };
-
-            }
-
-            else if (score <= 5) {
-
-                resultData = {
-
-                    title:
-                        "“Experta en nosotros” 💗",
-
-                    text:
-                        "Conoces nuestros pequeños detalles y eso me encanta."
-
-                };
-
-            }
-
-            else {
-
-                resultData = {
-
-                    title:
-                        "“Demasiado experta” 💞",
-
-                    text:
-                        "Sabes demasiado sobre nosotros. Y me encanta que sea así."
-
-                };
-
-            }
-
-
             result.innerHTML = `
+                <div class="result-heart">♥</div>
 
                 <h2>
-                    ${resultData.title}
+                    Te has dejado alguna por ahí 👀
                 </h2>
 
                 <p>
-                    ${resultData.text}
+                    Contesta las seis preguntas
+                    para descubrir qué An eres hoy.
                 </p>
-
             `;
 
-
             result.scrollIntoView({
-
                 behavior: "smooth",
-
                 block: "center"
+            });
+
+            return;
+        }
+
+
+        /*
+         * Contadores para los cuatro tipos de An.
+         */
+
+        const scores = {
+            energica: 0,
+            cariñosa: 0,
+            caliente: 0,
+            pensativa: 0
+        };
+
+
+        /*
+         * Sumamos un punto al perfil
+         * correspondiente a cada respuesta.
+         */
+
+        for (let i = 1; i <= 6; i++) {
+
+            const selected =
+                quiz.querySelector(
+                    `input[name="q${i}"]:checked`
+                );
+
+            if (selected) {
+
+                scores[selected.value]++;
+
+            }
+        }
+
+
+        /*
+         * Encontramos el perfil con más puntos.
+         */
+
+        let winner = "energica";
+        let highestScore = scores.energica;
+
+        Object.keys(scores).forEach(function (type) {
+
+            if (scores[type] > highestScore) {
+
+                highestScore = scores[type];
+                winner = type;
+
+            }
+
+        });
+
+
+        /*
+         * Resultados.
+         */
+
+        const results = {
+
+            energica: {
+
+                title: "An enérgica ⚡",
+
+                subtitle:
+                    "Hoy tienes demasiada energía para quedarte quieta.",
+
+                text:
+                    "Necesitas hacer cosas, moverte, descubrir algo y disfrutar el momento. Eres esa An que aparece con las pilas cargadas y que puede convertir cualquier plan pequeño en una aventura.",
+
+                message:
+                    "Ven aquí, terremoto. Te quiero incluso cuando no paras quieta ♥"
+
+            },
+
+
+            cariñosa: {
+
+                title: "An cariñosa 🫶",
+
+                subtitle:
+                    "Hoy lo único que quieres es cariño.",
+
+                text:
+                    "Estás en uno de esos días en los que un abrazo, estar juntos y sentirte querida pueden arreglar prácticamente cualquier cosa. Hoy necesitas a tu persona favorita cerquita.",
+
+                message:
+                    "Ven, mi niña. Hoy toca darte todos los mimos que quieras ♥"
+
+            },
+
+
+            caliente: {
+
+                title: "An caliente 🔥",
+
+                subtitle:
+                    "Creo que alguien está teniendo pensamientos peligrosos... 👀",
+
+                text:
+                    "Hoy estás especialmente cariñosa, juguetona y con ganas de estar muy, muy cerca de tu novio. Digamos que probablemente no sea el mejor día para dejaros solos demasiado tiempo...",
+
+                message:
+                    "Creo que ya sé por qué has respondido así... 😏♥"
+
+            },
+
+
+            pensativa: {
+
+                title: "An pensativa 🌙",
+
+                subtitle:
+                    "Hoy estás en tu mundo.",
+
+                text:
+                    "Estás tranquila, pensando en tus cosas y dejando que tu cabeza vaya por donde quiera. Quizá te apetezca música, reels, estar tumbada o simplemente perderte un rato en tus pensamientos.",
+
+                message:
+                    "Aunque estés en tu mundo, espero poder formar parte de él ♥"
+
+            }
+
+        };
+
+
+        const selectedResult = results[winner];
+
+
+        /*
+         * Mostramos el resultado.
+         */
+
+        result.hidden = false;
+
+        result.innerHTML = `
+
+            <div class="result-heart">
+                ♥
+            </div>
+
+            <span class="small-title">
+                TU RESULTADO
+            </span>
+
+            <h2>
+                ${selectedResult.title}
+            </h2>
+
+            <h3>
+                ${selectedResult.subtitle}
+            </h3>
+
+            <p>
+                ${selectedResult.text}
+            </p>
+
+            <div class="result-message">
+                ${selectedResult.message}
+            </div>
+
+            <div class="result-score">
+                ${highestScore} de 6 respuestas coinciden
+                con esta versión de An.
+            </div>
+
+            <button
+                type="button"
+                class="button primary"
+                id="retryQuiz"
+            >
+                Hacerlo otra vez ♥
+            </button>
+
+        `;
+
+
+        /*
+         * Botón para repetir el test.
+         */
+
+        const retryButton =
+            document.querySelector("#retryQuiz");
+
+        if (retryButton) {
+
+            retryButton.addEventListener("click", function () {
+
+                quiz.reset();
+
+                result.hidden = true;
+
+                result.innerHTML = "";
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
 
             });
 
         }
-    );
+
+
+        /*
+         * Bajamos suavemente hasta el resultado.
+         */
+
+        result.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+
+        /*
+         * Corazones extra al aparecer el resultado.
+         */
+
+        for (let i = 0; i < 15; i++) {
+
+            setTimeout(function () {
+
+                if (typeof createHeart === "function") {
+                    createHeart();
+                }
+
+            }, i * 100);
+
+        }
+
+    });
 
 }
-
 
 /* =====================================================
    PREGUNTA FINAL
