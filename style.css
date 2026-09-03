@@ -1266,338 +1266,6 @@ body {
 }
 
 
-/* =========================================
-   TIMELINE
-========================================= */
-
-.timeline {
-
-    max-width: 950px;
-
-    margin: auto;
-
-    position: relative;
-
-}
-
-
-.timeline::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 27px;
-
-    top: 0;
-
-    bottom: 0;
-
-    width: 1px;
-
-    background: var(--border);
-
-}
-
-
-.timeline-item {
-
-    display: grid;
-
-    grid-template-columns:
-        55px 300px 1fr;
-
-    gap: 25px;
-
-    align-items: center;
-
-    margin-bottom: 65px;
-
-}
-
-
-.timeline-dot {
-
-    width: 55px;
-
-    height: 55px;
-
-    border-radius: 50%;
-
-    display: grid;
-
-    place-items: center;
-
-    background: var(--background);
-
-    border:
-        1px solid var(--border);
-
-    color: var(--pink);
-
-    z-index: 2;
-
-}
-
-
-.timeline-photo {
-
-    height: 310px;
-
-    overflow: hidden;
-
-    background: var(--pink-light);
-
-    box-shadow: var(--shadow);
-
-}
-
-
-.timeline-photo img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-
-    transition: 0.5s;
-
-}
-
-
-.timeline-photo:hover img {
-
-    transform: scale(1.04);
-
-}
-
-
-.timeline-content span {
-
-    font-size: 0.65rem;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.15em;
-
-    color: var(--pink-dark);
-
-}
-
-
-.timeline-content h2 {
-
-    margin: 8px 0;
-
-    font:
-        600 2.4rem var(--serif);
-
-}
-
-
-.timeline-content p {
-
-    color: var(--muted);
-
-    line-height: 1.75;
-
-}
-
-
-/* =========================================
-   RECUERDOS
-========================================= */
-
-.memory-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 25px;
-
-}
-
-
-.memory-card {
-
-    background:
-        rgba(255,255,255,0.75);
-
-    border:
-        1px solid var(--border);
-
-    box-shadow: var(--shadow);
-
-    overflow: hidden;
-
-}
-
-
-.memory-image {
-
-    height: 350px;
-
-    overflow: hidden;
-
-}
-
-
-.memory-image img {
-
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
-
-    display: block;
-
-    transition: 0.5s;
-
-}
-
-
-.memory-card:hover .memory-image img {
-
-    transform: scale(1.04);
-
-}
-
-
-.memory-content {
-
-    padding: 28px;
-
-}
-
-
-.memory-content span {
-
-    color: var(--pink-dark);
-
-    font-size: 0.65rem;
-
-    letter-spacing: 0.15em;
-
-}
-
-
-.memory-content h2 {
-
-    margin:
-        8px 0;
-
-    font:
-        600 2.2rem var(--serif);
-
-}
-
-
-.memory-content p {
-
-    color: var(--muted);
-
-    line-height: 1.7;
-
-}
-
-
-.memory-date {
-
-    margin-bottom: 12px;
-
-    font-size: 0.75rem;
-
-}
-
-
-/* =========================================
-   PLANES
-========================================= */
-
-.plans-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    gap: 20px;
-
-}
-
-
-.plan-card {
-
-    padding: 30px;
-
-    background:
-        rgba(255,255,255,0.72);
-
-    border:
-        1px solid var(--border);
-
-    box-shadow: var(--shadow);
-
-}
-
-
-.plan-icon {
-
-    font-size: 2.7rem;
-
-    margin-bottom: 18px;
-
-}
-
-
-.plan-card h2 {
-
-    font:
-        600 1.9rem var(--serif);
-
-}
-
-
-.plan-card p {
-
-    color: var(--muted);
-
-    line-height: 1.65;
-
-    margin:
-        8px 0 20px;
-
-}
-
-
-.plan-check,
-.movie-check {
-
-    border: 0;
-
-    background: transparent;
-
-    color: var(--pink-dark);
-
-    cursor: pointer;
-
-}
-
-
-.completed {
-
-    text-decoration: line-through;
-
-    opacity: 0.5;
-
-}
-
 
 /* =========================================
    MÚSICA
@@ -3012,6 +2680,893 @@ footer {
         padding:
             45px 25px;
 
+    }
+
+}
+
+/* =========================================================
+   NUEVO DISEÑO — HISTORIA COMO CENTRO DE LA WEB
+========================================================= */
+
+
+/* =========================================================
+   HERO DE HISTORIA
+========================================================= */
+
+.historia-hero {
+    min-height: 68vh;
+    padding: 150px 7vw 100px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    position: relative;
+}
+
+
+.historia-hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(4rem, 9vw, 8rem);
+    line-height: .9;
+    font-weight: 500;
+
+    margin: 10px 0 25px;
+
+    color: var(--text);
+}
+
+
+.historia-hero > p {
+    max-width: 650px;
+
+    font-size: 1.2rem;
+    line-height: 1.8;
+
+    color: var(--muted);
+}
+
+
+.history-stats {
+    display: flex;
+
+    margin-top: 65px;
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+
+.history-stats div {
+    min-width: 150px;
+
+    padding: 20px 35px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    border-right: 1px solid var(--border);
+}
+
+
+.history-stats div:last-child {
+    border-right: none;
+}
+
+
+.history-stats strong {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    color: var(--pink-dark);
+}
+
+
+.history-stats span {
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   HOME — HISTORIA DESTACADA
+========================================================= */
+
+.history-feature {
+    width: min(1200px, 88vw);
+
+    margin: 20px auto 130px;
+
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+
+    background: var(--paper);
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 35px 90px rgba(77, 35, 51, .13);
+
+    overflow: hidden;
+}
+
+
+.history-feature-image {
+    min-height: 650px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+
+.history-feature-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform .8s ease;
+}
+
+
+.history-feature:hover .history-feature-image img {
+    transform: scale(1.035);
+}
+
+
+.history-image-overlay {
+    position: absolute;
+
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+
+    padding: 18px 22px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(255, 250, 247, .88);
+
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,.7);
+}
+
+
+.history-image-overlay span {
+    font-size: .7rem;
+    letter-spacing: .13em;
+    color: var(--muted);
+}
+
+
+.history-image-overlay strong {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--pink-dark);
+}
+
+
+.history-feature-content {
+    padding: 75px 65px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.history-feature-content .ornament {
+    margin: 20px 0 10px;
+}
+
+
+.history-feature-content h2 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: .95;
+    font-weight: 500;
+
+    margin: 0 0 30px;
+}
+
+
+.history-feature-content p {
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+
+.history-feature-content .history-lead {
+    font-size: 1.1rem;
+    color: var(--text);
+}
+
+
+.history-button {
+    align-self: flex-start;
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   HOME — FRASE DE HISTORIA
+========================================================= */
+
+.history-quote {
+    width: min(850px, 85vw);
+
+    margin: 0 auto 130px;
+
+    text-align: center;
+}
+
+
+.history-quote p {
+    font-family: var(--serif);
+
+    font-size: clamp(2rem, 4vw, 3.2rem);
+
+    line-height: 1.15;
+
+    color: var(--text);
+}
+
+
+.history-quote span {
+    display: block;
+
+    margin-top: 25px;
+
+    font-size: .75rem;
+
+    letter-spacing: .15em;
+
+    text-transform: uppercase;
+
+    color: var(--muted);
+}
+
+
+.quote-line {
+    width: 60px;
+    height: 1px;
+
+    margin: 30px auto;
+
+    background: var(--border);
+}
+
+
+/* =========================================================
+   SECCIONES SECUNDARIAS
+========================================================= */
+
+.secondary-section {
+    width: min(1200px, 88vw);
+
+    margin: 0 auto 120px;
+}
+
+
+.secondary-section .section-heading {
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+
+.secondary-section .section-heading h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 500;
+
+    margin: 10px 0;
+}
+
+
+.secondary-portals {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+.portal-secondary {
+    min-height: 280px;
+
+    position: relative;
+}
+
+
+.portal-arrow {
+    position: absolute;
+
+    right: 25px;
+    bottom: 22px;
+
+    font-size: 1.2rem;
+
+    color: var(--pink);
+
+    transition:
+        transform .25s ease,
+        color .25s ease;
+}
+
+
+.portal-secondary:hover .portal-arrow {
+    transform: translateX(6px);
+    color: var(--pink-dark);
+}
+
+
+/* =========================================================
+   FINAL HOME
+========================================================= */
+
+.home-final {
+    width: min(800px, 85vw);
+
+    margin: 140px auto;
+
+    text-align: center;
+}
+
+
+.home-final h2 {
+    font-family: var(--serif);
+
+    font-size: clamp(3rem, 6vw, 5rem);
+
+    font-weight: 500;
+
+    margin: 15px 0;
+}
+
+
+.home-final p {
+    max-width: 600px;
+
+    margin: 0 auto 30px;
+
+    color: var(--muted);
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   TIMELINE — HISTORIA
+========================================================= */
+
+.historia-section {
+    padding-top: 40px;
+    padding-bottom: 130px;
+}
+
+
+.timeline {
+    width: min(1100px, 90vw);
+
+    margin: 0 auto;
+
+    position: relative;
+}
+
+
+.timeline::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+
+    left: 27px;
+
+    width: 1px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            var(--border) 5%,
+            var(--border) 95%,
+            transparent
+        );
+}
+
+
+.timeline-item {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 55px 390px 1fr;
+
+    gap: 35px;
+
+    margin-bottom: 90px;
+
+    min-height: 390px;
+
+    align-items: center;
+}
+
+
+.timeline-dot {
+    position: relative;
+    z-index: 2;
+
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--paper);
+
+    border: 1px solid var(--border);
+
+    color: var(--pink);
+
+    box-shadow:
+        0 8px 25px rgba(77,35,51,.08);
+
+    transition:
+        background .3s ease,
+        color .3s ease,
+        transform .3s ease;
+}
+
+
+.timeline-item:hover .timeline-dot {
+    background: var(--pink);
+    color: white;
+    transform: scale(1.08);
+}
+
+
+.timeline-photo {
+    height: 390px;
+
+    overflow: hidden;
+
+    border-radius: 2px;
+
+    box-shadow:
+        0 20px 55px rgba(77,35,51,.11);
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+}
+
+
+.timeline-photo img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform .6s ease;
+}
+
+
+.timeline-item:hover .timeline-photo {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 30px 70px rgba(77,35,51,.17);
+}
+
+
+.timeline-item:hover .timeline-photo img {
+    transform: scale(1.04);
+}
+
+
+.timeline-content {
+    padding-right: 25px;
+}
+
+
+.timeline-content span {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: .68rem;
+
+    letter-spacing: .14em;
+
+    color: var(--pink-dark);
+}
+
+
+.timeline-content h2 {
+    font-family: var(--serif);
+
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+
+    line-height: .95;
+
+    font-weight: 500;
+
+    margin: 0 0 20px;
+
+    transition: color .25s ease;
+}
+
+
+.timeline-item:hover .timeline-content h2 {
+    color: var(--pink-dark);
+}
+
+
+.timeline-content p {
+    color: var(--muted);
+
+    line-height: 1.8;
+
+    margin: 0;
+}
+
+
+/* CAPÍTULO ESPECIAL */
+
+.timeline-special .timeline-dot {
+    width: 65px;
+    height: 65px;
+
+    margin-left: -5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--pink-dark)
+        );
+
+    color: white;
+
+    border: none;
+
+    box-shadow:
+        0 10px 35px rgba(159,49,88,.25);
+}
+
+
+.timeline-special .timeline-photo {
+    height: 450px;
+}
+
+
+.timeline-special .timeline-content h2 {
+    font-size: clamp(2.7rem, 5vw, 4.6rem);
+}
+
+
+/* ÚLTIMO CAPÍTULO */
+
+.timeline-final {
+    margin-bottom: 0;
+}
+
+
+.timeline-final .timeline-dot {
+    background:
+        linear-gradient(
+            135deg,
+            var(--pink),
+            var(--pink-dark)
+        );
+
+    color: white;
+
+    border: none;
+
+    box-shadow:
+        0 10px 35px rgba(159,49,88,.25);
+}
+
+
+/* =========================================================
+   FINAL DE HISTORIA
+========================================================= */
+
+.history-ending {
+    width: min(700px, 85vw);
+
+    margin: 130px auto 0;
+
+    padding-top: 80px;
+
+    border-top: 1px solid var(--border);
+
+    text-align: center;
+}
+
+
+.history-ending h2 {
+    font-family: var(--serif);
+
+    font-size: clamp(3rem, 6vw, 5rem);
+
+    font-weight: 500;
+
+    margin: 15px 0;
+}
+
+
+.history-ending p {
+    color: var(--muted);
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   NAVEGACIÓN
+========================================================= */
+
+.navigation a.active {
+    color: var(--pink-dark);
+}
+
+
+.navigation a.active::after {
+    width: 100%;
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .history-feature {
+        grid-template-columns: 1fr;
+    }
+
+
+    .history-feature-image {
+        min-height: 550px;
+    }
+
+
+    .history-feature-content {
+        padding: 55px 45px;
+    }
+
+
+    .secondary-portals {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .timeline-item {
+        grid-template-columns: 55px 1fr;
+
+        gap: 25px;
+
+        align-items: start;
+
+        min-height: 0;
+    }
+
+
+    .timeline-photo {
+        height: 360px;
+
+        grid-column: 2;
+    }
+
+
+    .timeline-content {
+        grid-column: 2;
+    }
+
+
+    .timeline-special .timeline-photo {
+        height: 400px;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .historia-hero {
+        min-height: auto;
+
+        padding:
+            130px 6vw
+            80px;
+    }
+
+
+    .historia-hero h1 {
+        font-size: 4rem;
+    }
+
+
+    .history-stats {
+        width: 100%;
+    }
+
+
+    .history-stats div {
+        min-width: 0;
+
+        flex: 1;
+
+        padding: 16px 8px;
+    }
+
+
+    .history-stats strong {
+        font-size: 1.7rem;
+    }
+
+
+    .history-stats span {
+        font-size: .58rem;
+    }
+
+
+    .history-feature {
+        width: 90vw;
+
+        margin-bottom: 90px;
+    }
+
+
+    .history-feature-image {
+        min-height: 420px;
+    }
+
+
+    .history-image-overlay {
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+
+        padding: 13px 15px;
+    }
+
+
+    .history-image-overlay span {
+        font-size: .55rem;
+    }
+
+
+    .history-image-overlay strong {
+        font-size: 1rem;
+    }
+
+
+    .history-feature-content {
+        padding: 45px 30px;
+    }
+
+
+    .history-feature-content h2 {
+        font-size: 3.2rem;
+    }
+
+
+    .history-quote {
+        margin-bottom: 90px;
+    }
+
+
+    .history-quote p {
+        font-size: 2rem;
+    }
+
+
+    .secondary-section {
+        width: 90vw;
+    }
+
+
+    .secondary-portals {
+        grid-template-columns: 1fr;
+    }
+
+
+    .home-final {
+        margin: 100px auto;
+    }
+
+
+    .timeline {
+        width: 90vw;
+    }
+
+
+    .timeline::before {
+        left: 20px;
+    }
+
+
+    .timeline-item {
+        grid-template-columns: 42px 1fr;
+
+        gap: 18px;
+
+        margin-bottom: 65px;
+    }
+
+
+    .timeline-dot {
+        width: 42px;
+        height: 42px;
+
+        font-size: .85rem;
+    }
+
+
+    .timeline-special .timeline-dot {
+        width: 48px;
+        height: 48px;
+
+        margin-left: -3px;
+    }
+
+
+    .timeline-photo {
+        height: 280px;
+
+        grid-column: 2;
+    }
+
+
+    .timeline-content {
+        grid-column: 2;
+
+        padding-right: 0;
+    }
+
+
+    .timeline-content h2 {
+        font-size: 2.4rem;
+    }
+
+
+    .timeline-content p {
+        font-size: .92rem;
+        line-height: 1.7;
+    }
+
+
+    .timeline-special .timeline-photo {
+        height: 320px;
+    }
+
+
+    .timeline-special .timeline-content h2 {
+        font-size: 2.8rem;
+    }
+
+
+    .history-ending {
+        margin-top: 90px;
     }
 
 }
