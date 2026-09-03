@@ -1,340 +1,361 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Nuestro test ♥</title>
+    <title>¿Qué An eres hoy? ♥</title>
+    <meta name="description" content="Un pequeño test para descubrir qué An eres hoy ♥">
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<div class="floating-hearts"></div>
+    <div class="floating-hearts"></div>
 
-<header class="site-header">
+    <main class="page-container">
 
-    <a href="home.html" class="logo">
-        A <span>♥</span> G
-    </a>
+        <section class="page-header">
+            <span class="small-title">UN PEQUEÑO TEST ♥</span>
+
+            <h1>
+                ¿Qué An eres hoy?
+            </h1>
+
+            <div class="ornament">♥</div>
+
+            <p>
+                Hay muchas versiones de ti...
+                <br>
+                vamos a descubrir cuál está apareciendo hoy.
+            </p>
+        </section>
 
-    <button class="mobile-menu">
-        ☰
-    </button>
 
-    <nav class="navigation">
+        <form id="quiz" class="quiz-container">
 
-        <a href="home.html">Inicio</a>
-        <a href="historia.html">Historia</a>
-        <a href="recuerdos.html">Recuerdos</a>
-        <a href="fuera-juntos.html">Fuera juntos</a>
-        <a href="musica.html">Música</a>
-        <a href="pelis.html">Pelis</a>
-        <a href="abre-cuando.html">Abre cuando...</a>
-        <a href="test.html">Test</a>
 
-    </nav>
+            <!-- PREGUNTA 1 -->
+            <section class="quiz-question">
 
-</header>
+                <span class="question-number">
+                    01
+                </span>
 
+                <h2>
+                    Empezamos fácil...
+                    <br>
+                    ¿qué color curioso prefieres?
+                </h2>
 
-<main>
+                <div class="quiz-options">
 
-<section class="section">
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="energica">
+                        <span>
+                            💚 Verde
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="cariñosa">
+                        <span>
+                            🩷 Rosa
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="caliente">
+                        <span>
+                            ❤️ Rojo
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q1" value="pensativa">
+                        <span>
+                            💜 Morado
+                        </span>
+                    </label>
+
+                </div>
 
-    <div class="section-heading">
+            </section>
+
 
-        <span class="small-title">
-            TEST PARA SABER QUE TIPO DE AN ERES
-        </span>
+            <!-- PREGUNTA 2 -->
+            <section class="quiz-question">
+
+                <span class="question-number">
+                    02
+                </span>
+
+                <h2>
+                    Ahora toca Mel...
+                    <br>
+                    ¿qué canción de Melanie Martinez te apetece más?
+                </h2>
 
-        <h1>
-            ¿Cuánto conoces nuestra historia?
-        </h1>
-
-        <p>
-            La nota no cuenta. Lo importante es que somos nosotros.
-        </p>
-
-    </div>
-
-
-    <form id="quiz" class="quiz">
-
-
-        <!-- PREGUNTA 1 -->
-
-        <div class="question">
-
-            <span>
-                01
-            </span>
-
-            <h2>
-                [ESCRIBE AQUÍ LA PREGUNTA]
-            </h2>
-
-
-            <label>
-                <input
-                    type="radio"
-                    name="q1"
-                    value="1"
-                >
-
-                [RESPUESTA CORRECTA]
-
-            </label>
-
-
-            <label>
-                <input
-                    type="radio"
-                    name="q1"
-                    value="0"
-                >
-
-                [RESPUESTA]
-
-            </label>
-
-
-            <label>
-                <input
-                    type="radio"
-                    name="q1"
-                    value="0"
-                >
-
-                [RESPUESTA]
-
-            </label>
-
-
-            <label>
-                <input
-                    type="radio"
-                    name="q1"
-                    value="0"
-                >
-
-                [RESPUESTA]
-
-            </label>
-
-        </div>
-
-
-        <!-- PREGUNTA 2 -->
-
-        <div class="question">
-
-            <span>
-                02
-            </span>
-
-            <h2>
-                [PREGUNTA]
-            </h2>
-
-            <label>
-                <input type="radio" name="q2" value="1">
-                [CORRECTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q2" value="0">
-                [RESPUESTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q2" value="0">
-                [RESPUESTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q2" value="0">
-                [RESPUESTA]
-            </label>
-
-        </div>
-
-
-        <!-- PREGUNTA 3 -->
-
-        <div class="question">
-
-            <span>
-                03
-            </span>
-
-            <h2>
-                [PREGUNTA]
-            </h2>
-
-            <label>
-                <input type="radio" name="q3" value="1">
-                [CORRECTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q3" value="0">
-                [RESPUESTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q3" value="0">
-                [RESPUESTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q3" value="0">
-                [RESPUESTA]
-            </label>
-
-        </div>
-
-
-        <!-- PREGUNTA 4 -->
-
-        <div class="question">
-
-            <span>
-                04
-            </span>
-
-            <h2>
-                [PREGUNTA]
-            </h2>
-
-            <label>
-                <input type="radio" name="q4" value="1">
-                [CORRECTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q4" value="0">
-                [RESPUESTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q4" value="0">
-                [RESPUESTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q4" value="0">
-                [RESPUESTA]
-            </label>
-
-        </div>
-
-
-        <!-- PREGUNTA 5 -->
-
-        <div class="question">
-
-            <span>
-                05
-            </span>
-
-            <h2>
-                [PREGUNTA]
-            </h2>
-
-            <label>
-                <input type="radio" name="q5" value="1">
-                [CORRECTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q5" value="0">
-                [RESPUESTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q5" value="0">
-                [RESPUESTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q5" value="0">
-                [RESPUESTA]
-            </label>
-
-        </div>
-
-
-        <!-- PREGUNTA 6 -->
-
-        <div class="question">
-
-            <span>
-                06
-            </span>
-
-            <h2>
-                [PREGUNTA]
-            </h2>
-
-            <label>
-                <input type="radio" name="q6" value="1">
-                [CORRECTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q6" value="0">
-                [RESPUESTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q6" value="0">
-                [RESPUESTA]
-            </label>
-
-            <label>
-                <input type="radio" name="q6" value="0">
-                [RESPUESTA]
-            </label>
-
-        </div>
-
-
-        <button
-            type="submit"
-            class="button primary"
-        >
-            Descubrir resultado ♥
-        </button>
-
-
-        <div
+                <div class="quiz-options">
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="energica">
+                        <span>
+                            🎀 Soap
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="cariñosa">
+                        <span>
+                            💗 Training Wheels
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="caliente">
+                        <span>
+                            🔥 Play Date
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q2" value="pensativa">
+                        <span>
+                            🌙 Mrs. Potato Head
+                        </span>
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- PREGUNTA 3 -->
+            <section class="quiz-question">
+
+                <span class="question-number">
+                    03
+                </span>
+
+                <h2>
+                    Necesitas música...
+                    <br>
+                    ¿a quién te apetece escuchar ahora?
+                </h2>
+
+                <div class="quiz-options">
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="caliente">
+                        <span>
+                            🖤 El Saphir
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="energica">
+                        <span>
+                            ⚡ Natos y Waor
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="pensativa">
+                        <span>
+                            🌑 LNDLC
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q3" value="cariñosa">
+                        <span>
+                            🥀 Jarfaiter
+                        </span>
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- PREGUNTA 4 -->
+            <section class="quiz-question">
+
+                <span class="question-number">
+                    04
+                </span>
+
+                <h2>
+                    Si mañana pudieras cambiar completamente de estilo...
+                    <br>
+                    ¿qué te pondrías?
+                </h2>
+
+                <div class="quiz-options">
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="energica">
+                        <span>
+                            🖤 Alt / Académica
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="cariñosa">
+                        <span>
+                            🎀 Cute girl
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="pensativa">
+                        <span>
+                            📻 Vintage
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q4" value="caliente">
+                        <span>
+                            🩷 Babydoll
+                        </span>
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- PREGUNTA 5 -->
+            <section class="quiz-question">
+
+                <span class="question-number">
+                    05
+                </span>
+
+                <h2>
+                    Si estuvieras conmigo ahora mismo...
+                    <br>
+                    ¿qué te apetecería hacer?
+                </h2>
+
+                <div class="quiz-options">
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="energica">
+                        <span>
+                            🚶 Dar un paseo
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="cariñosa">
+                        <span>
+                            🎮 Jugar a algo juntos
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="caliente">
+                        <span>
+                            🫂 Estar acurrucados
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q5" value="pensativa">
+                        <span>
+                            🛏️ Estar tranquilitos en la cama
+                        </span>
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- PREGUNTA 6 -->
+            <section class="quiz-question">
+
+                <span class="question-number">
+                    06
+                </span>
+
+                <h2>
+                    Y para terminar...
+                    <br>
+                    ¿qué te apetece hacer ahora mismo?
+                </h2>
+
+                <div class="quiz-options">
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="energica">
+                        <span>
+                            🎨 Pintar
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="cariñosa">
+                        <span>
+                            🏃 Hacer deporte
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="caliente">
+                        <span>
+                            💗 Hablar con mi novio
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio" name="q6" value="pensativa">
+                        <span>
+                            😩 Ver reels
+                        </span>
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <button
+                type="submit"
+                class="button primary quiz-submit"
+            >
+                Descubrir qué An eres ♥
+            </button>
+
+        </form>
+
+
+        <!-- RESULTADO -->
+
+        <section
             id="quizResult"
             class="quiz-result"
             hidden
-        ></div>
+        >
+        </section>
 
 
-    </form>
+        <div class="page-back">
 
-</section>
+            <a href="home.html" class="button secondary">
+                ← Volver
+            </a>
 
-</main>
+        </div>
+
+    </main>
 
 
-<footer>
-    Hecho con amor, para An. ♥
-</footer>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
