@@ -1975,112 +1975,416 @@ body {
 }
 
 
-/* =========================================
-   TEST
-========================================= */
+/* =====================================================
+   TEST — ¿QUÉ AN ERES HOY?
+===================================================== */
 
-.quiz {
+/* Contenedor general */
 
-    max-width: 800px;
-
-    margin: auto;
-
+.quiz-container {
+    width: min(800px, 92vw);
+    margin: 50px auto;
 }
 
 
-.question {
+/* -----------------------------------------------------
+   PREGUNTA
+----------------------------------------------------- */
 
-    padding: 28px;
+.quiz-question {
+    position: relative;
 
-    margin-bottom: 18px;
+    margin-bottom: 35px;
+    padding: 35px;
 
     background:
-        rgba(255,255,255,0.72);
+        linear-gradient(
+            135deg,
+            rgba(255, 253, 251, 0.96),
+            rgba(255, 247, 244, 0.96)
+        );
 
-    border:
-        1px solid var(--border);
-
-    box-shadow: var(--shadow);
-
-}
-
-
-.question > span {
-
-    color: var(--pink);
-
-    font-weight: 600;
-
-}
-
-
-.question h2 {
-
-    margin:
-        8px 0 20px;
-
-    font:
-        600 2rem var(--serif);
-
-}
-
-
-.question label {
-
-    display: block;
-
-    padding: 12px;
-
+    border: 1px solid rgba(120, 70, 70, 0.1);
     border-radius: 10px;
 
-    color: var(--muted);
+    box-shadow:
+        0 12px 35px rgba(70, 35, 35, 0.07);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.quiz-question:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 18px 45px rgba(70, 35, 35, 0.11);
+}
+
+
+/* Número de pregunta */
+
+.question-number {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid rgba(150, 90, 100, 0.2);
+    border-radius: 50%;
+
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+
+    opacity: 0.6;
+}
+
+
+/* Título de la pregunta */
+
+.quiz-question h2 {
+    margin: 5px 0 25px;
+
+    font-size: clamp(1.25rem, 3vw, 1.65rem);
+
+    line-height: 1.45;
+}
+
+
+/* -----------------------------------------------------
+   OPCIONES
+----------------------------------------------------- */
+
+.quiz-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+
+/* Ocultamos el radio original */
+
+.quiz-option input {
+    position: absolute;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* Tarjeta de respuesta */
+
+.quiz-option span {
+    display: flex;
+
+    align-items: center;
+
+    min-height: 58px;
+
+    padding: 15px 18px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.7);
+
+    border: 1px solid rgba(120, 70, 70, 0.12);
+
+    border-radius: 7px;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    line-height: 1.4;
 
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
-.question label:hover {
+/* Hover */
 
-    background: var(--pink-light);
+.quiz-option span:hover {
+    transform: translateY(-2px);
 
+    background: rgba(255, 248, 248, 0.95);
+
+    border-color:
+        rgba(170, 100, 120, 0.3);
+
+    box-shadow:
+        0 7px 20px rgba(80, 35, 45, 0.08);
 }
 
 
-.question input {
+/* Opción seleccionada */
 
-    accent-color: var(--pink);
+.quiz-option input:checked + span {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(210, 135, 150, 0.14),
+            rgba(255, 230, 235, 0.5)
+        );
 
-    margin-right: 8px;
+    border-color:
+        rgba(170, 90, 110, 0.45);
 
+    box-shadow:
+        0 6px 20px rgba(150, 70, 90, 0.1);
+
+    transform: translateY(-2px);
 }
 
+
+/* Corazón visual al seleccionar */
+
+.quiz-option input:checked + span::after {
+    content: "♥";
+
+    margin-left: auto;
+
+    font-size: 1rem;
+
+    opacity: 0.8;
+}
+
+
+/* -----------------------------------------------------
+   BOTÓN DEL TEST
+----------------------------------------------------- */
+
+.quiz-submit {
+    display: block;
+
+    margin: 45px auto 20px;
+
+    min-width: 250px;
+}
+
+
+/* -----------------------------------------------------
+   RESULTADO
+----------------------------------------------------- */
 
 .quiz-result {
+    width: min(650px, 92vw);
 
-    margin-top: 25px;
+    margin: 50px auto;
 
-    padding: 30px;
+    padding: 45px 35px;
 
-    background: var(--pink-light);
-
-    border:
-        1px solid var(--border);
+    box-sizing: border-box;
 
     text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffdfb,
+            #fff5f5
+        );
+
+    border: 1px solid rgba(140, 70, 90, 0.15);
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 20px 60px rgba(70, 30, 40, 0.12);
+
+    animation:
+        resultAppear 0.7s ease forwards;
+}
+
+
+/* Animación */
+
+@keyframes resultAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* Corazón del resultado */
+
+.result-heart {
+    margin-bottom: 15px;
+
+    font-size: 2.5rem;
+
+    animation:
+        resultHeart 1.2s ease infinite alternate;
+}
+
+
+@keyframes resultHeart {
+
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.12);
+    }
 
 }
 
 
 .quiz-result h2 {
+    margin: 12px 0;
 
-    font:
-        600 2.5rem var(--serif);
-
+    font-size:
+        clamp(2rem, 6vw, 3rem);
 }
 
+
+.quiz-result h3 {
+    margin: 10px 0 25px;
+
+    font-size: 1.1rem;
+
+    font-weight: normal;
+
+    opacity: 0.7;
+}
+
+
+.quiz-result p {
+    max-width: 520px;
+
+    margin: 0 auto 25px;
+
+    line-height: 1.8;
+
+    font-size: 1rem;
+}
+
+
+/* Mensaje final */
+
+.result-message {
+    margin: 30px auto;
+
+    padding: 20px;
+
+    max-width: 500px;
+
+    border-top: 1px solid rgba(150, 90, 100, 0.15);
+    border-bottom: 1px solid rgba(150, 90, 100, 0.15);
+
+    font-style: italic;
+
+    line-height: 1.7;
+}
+
+
+/* Puntuación */
+
+.result-score {
+    margin-bottom: 25px;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    opacity: 0.45;
+}
+
+
+/* -----------------------------------------------------
+   MENSAJE DE PREGUNTAS SIN CONTESTAR
+----------------------------------------------------- */
+
+.quiz-result h2 + p {
+    margin-bottom: 0;
+}
+
+
+/* -----------------------------------------------------
+   MÓVIL
+----------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .quiz-container {
+        width: 94vw;
+
+        margin-top: 35px;
+    }
+
+
+    .quiz-question {
+        padding: 25px 20px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .quiz-question h2 {
+        font-size: 1.2rem;
+
+        margin-bottom: 20px;
+    }
+
+
+    .quiz-options {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+
+    .quiz-option span {
+        min-height: 55px;
+
+        padding: 14px 15px;
+
+        font-size: 0.95rem;
+    }
+
+
+    .quiz-submit {
+        width: 100%;
+
+        min-width: 0;
+
+        margin-top: 35px;
+    }
+
+
+    .quiz-result {
+        width: 94vw;
+
+        padding: 35px 22px;
+    }
+
+
+    .quiz-result h2 {
+        font-size: 2rem;
+    }
+
+}
 
 /* =========================================
    PÁGINA FINAL
