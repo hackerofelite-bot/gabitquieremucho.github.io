@@ -2,203 +2,447 @@
 <html lang="es">
 
 <head>
-    
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Nuestra música ♥</title>
+    <title>Nuestra banda sonora ♥</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<div class="floating-hearts"></div>
+    <div class="floating-hearts"></div>
 
-<header class="site-header">
+    <!-- HEADER -->
+    <header class="site-header">
 
-    <a href="home.html" class="logo">
-        A <span>♥</span> G
-    </a>
+        <a href="home.html" class="logo">
+            Gabi <span>♥</span> An
+        </a>
 
-    <button class="mobile-menu">
-        ☰
-    </button>
+        <nav class="navigation">
+            <a href="home.html">Inicio</a>
+            <a href="historia.html">Historia</a>
+            <a href="musica.html" class="active">Música</a>
+            <a href="pelis.html">Pelis</a>
+            <a href="abre-cuando.html">Abre cuando...</a>
+            <a href="test.html">Test</a>
+        </nav>
 
-    <nav class="navigation">
+        <button class="mobile-menu" aria-label="Abrir menú">
+            ☰
+        </button>
 
-        <a href="home.html">Inicio</a>
-        <a href="historia.html">Historia</a>
-        <a href="recuerdos.html">Recuerdos</a>
-        <a href="fuera-juntos.html">Fuera juntos</a>
-        <a href="musica.html">Música</a>
-        <a href="pelis.html">Pelis</a>
-        <a href="abre-cuando.html">Abre cuando...</a>
-        <a href="test.html">Test</a>
-
-    </nav>
-
-</header>
+    </header>
 
 
-<main>
+    <main>
 
-<section class="section">
+        <!-- INTRO -->
+        <section class="section-heading">
 
-    <div class="section-heading">
+            <span class="small-title">
+                NUESTRA BANDA SONORA
+            </span>
 
-        <span class="small-title">
-            NUESTRA BANDA SONORA
-        </span>
+            <div class="ornament">♥</div>
 
-        <h1>
-            Nuestra música 🎧
-        </h1>
+            <h1>
+                Canciones que<br>
+                me recuerdan a ti.
+            </h1>
 
-        <p>
-            Porque algunas canciones consiguen guardar
-            un recuerdo entero.
-        </p>
+            <p>
+                Porque algunas canciones dejan de ser simplemente canciones
+                cuando empiezan a formar parte de nuestra historia.
+            </p>
 
-    </div>
-
-
-    <div class="songs">
-
-
-        <article class="song-card">
-
-            <div class="album-cover">
-                ♥
-            </div>
-
-            <div class="song-info">
-
-                <span>
-                    #01
-                </span>
-
-                <h2>
-                    [CANCIÓN]
-                </h2>
-
-                <p>
-                    [ARTISTA]
-                </p>
-
-                <p class="song-story">
-                    [POR QUÉ ESTA CANCIÓN ES ESPECIAL PARA NOSOTROS]
-                </p>
-
-            </div>
-
-            <!--
-                CAMBIA EL HREF POR EL ENLACE
-                DE SPOTIFY / YOUTUBE
-            -->
-
-            <a
-                href="https://open.spotify.com/"
-                target="_blank"
-                class="play-button"
-            >
-                ▶
-            </a>
-
-        </article>
+        </section>
 
 
-        <article class="song-card">
-
-            <div class="album-cover">
-                ♫
-            </div>
-
-            <div class="song-info">
-
-                <span>
-                    #02
-                </span>
-
-                <h2>
-                    [CANCIÓN]
-                </h2>
-
-                <p>
-                    [ARTISTA]
-                </p>
-
-                <p class="song-story">
-                    [POR QUÉ ESTA CANCIÓN ES ESPECIAL]
-                </p>
-
-            </div>
-
-            <a
-                href="https://open.spotify.com/"
-                target="_blank"
-                class="play-button"
-            >
-                ▶
-            </a>
-
-        </article>
+        <!-- CANCIONES -->
+        <section class="songs">
 
 
-        <article class="song-card">
+            <!-- 01 -->
+            <article class="song-card">
 
-            <div class="album-cover">
-                ♡
-            </div>
+                <div class="album-cover">
+                    <iframe
+                        src="https://open.spotify.com/embed/track/58ge6dfP91o9oXMzq3XkIS?utm_source=generator"
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+                </div>
 
-            <div class="song-info">
+                <div class="song-info">
 
-                <span>
-                    #03
-                </span>
+                    <span>01 · ARCTIC MONKEYS</span>
 
-                <h2>
-                    [CANCIÓN]
-                </h2>
+                    <h2>505</h2>
 
-                <p>
-                    [ARTISTA]
-                </p>
+                    <p>
+                        Arctic Monkeys
+                    </p>
 
-                <p class="song-story">
-                    [POR QUÉ ESTA CANCIÓN ES ESPECIAL]
-                </p>
+                    <p class="song-story">
+                        Una de esas canciones que ya no puedo escuchar
+                        sin pensar en ti.
+                    </p>
 
-            </div>
+                </div>
 
-            <a
-                href="https://open.spotify.com/"
-                target="_blank"
-                class="play-button"
-            >
-                ▶
-            </a>
-
-        </article>
+            </article>
 
 
-    </div>
+            <!-- 02 -->
+            <article class="song-card">
 
-</section>
+                <div class="album-cover">
+                    <iframe
+                        src="https://open.spotify.com/embed/track/0BxE4FqsDD1Ot4YuBXwAPp?utm_source=generator"
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+                </div>
 
-</main>
+                <div class="song-info">
+
+                    <span>02 · AL SAFIR</span>
+
+                    <h2>808</h2>
+
+                    <p>
+                        Al Safir
+                    </p>
+
+                    <p class="song-story">
+                        Porque nuestra historia también tiene
+                        canciones que simplemente nos representan.
+                    </p>
+
+                </div>
+
+            </article>
 
 
-<footer>
-    Hecho con amor, para An. ♥
-</footer>
+            <!-- 03 -->
+            <article class="song-card">
 
-<script src="script.js"></script>
+                <div class="album-cover">
+                    <iframe
+                        src="https://open.spotify.com/embed/track/40iaOidXr2AwfjXFqlWqcg?utm_source=generator"
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <div class="song-info">
+
+                    <span>03 · ROJUU</span>
+
+                    <h2>Dame Otro Motivo</h2>
+
+                    <p>
+                        Rojuu
+                    </p>
+
+                    <p class="song-story">
+                        Una canción que tenía que estar aquí.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- 04 -->
+            <article class="song-card">
+
+                <div class="album-cover">
+                    <iframe
+                        src="https://open.spotify.com/embed/track/03aSqc3ZrSvELTzC0yuGi8?utm_source=generator"
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <div class="song-info">
+
+                    <span>04 · PARKINEOS & ROJUU</span>
+
+                    <h2>Umi - Remix</h2>
+
+                    <p>
+                        Parkineos, Rojuu
+                    </p>
+
+                    <p class="song-story">
+                        Porque hay canciones que consiguen quedarse
+                        asociadas a una persona para siempre.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- 05 -->
+            <article class="song-card">
+
+                <div class="album-cover">
+                    <iframe
+                        src="https://open.spotify.com/embed/track/58ge6dfP91o9oXMzq3XkIS?utm_source=generator"
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <div class="song-info">
+
+                    <span>05 · THE RARE OCCASIONS</span>
+
+                    <h2>Notion</h2>
+
+                    <p>
+                        The Rare Occasions
+                    </p>
+
+                    <p class="song-story">
+                        Una canción que tiene esa sensación de
+                        estar viviendo algo que quieres recordar.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- 06 -->
+            <article class="song-card">
+
+                <div class="album-cover">
+                    <iframe
+                        src="https://open.spotify.com/embed/track/2X485T9Z5Ly0xyaghN73ed?utm_source=generator"
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <div class="song-info">
+
+                    <span>06 · JACK STAUBER</span>
+
+                    <h2>Two Time</h2>
+
+                    <p>
+                        Jack Stauber
+                    </p>
+
+                    <p class="song-story">
+                        Una de esas canciones que simplemente
+                        tenía que formar parte de nuestra lista.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- 07 -->
+            <article class="song-card">
+
+                <div class="album-cover">
+                    <iframe
+                        src="https://open.spotify.com/embed/track/1aXV8GrmQLvgoFtBPERP7E?utm_source=generator"
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <div class="song-info">
+
+                    <span>07 · EYEDRESS</span>
+
+                    <h2>Jealous</h2>
+
+                    <p>
+                        Eyedress
+                    </p>
+
+                    <p class="song-story">
+                        Porque algunas canciones parecen hechas
+                        para ciertos momentos.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- 08 -->
+            <article class="song-card">
+
+                <div class="album-cover">
+                    <iframe
+                        src="https://open.spotify.com/embed/track/1jJci4qxiYcOHhQR247rEU?utm_source=generator"
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <div class="song-info">
+
+                    <span>08 · MGMT</span>
+
+                    <h2>Kids</h2>
+
+                    <p>
+                        MGMT
+                    </p>
+
+                    <p class="song-story">
+                        Para todos esos momentos en los que
+                        simplemente somos nosotros.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- 09 -->
+            <article class="song-card">
+
+                <div class="album-cover">
+                    <iframe
+                        src="https://open.spotify.com/embed/track/2X485T9Z5Ly0xyaghN73ed?utm_source=generator"
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+                <div class="song-info">
+
+                    <span>09 · TAME IMPALA</span>
+
+                    <h2>Let It Happen</h2>
+
+                    <p>
+                        Tame Impala
+                    </p>
+
+                    <p class="song-story">
+                        Dejar que las cosas pasen y disfrutar
+                        de todo lo que nos queda por vivir.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <!-- 10 -->
+            <article class="song-card">
+
+                <div class="album-cover">
+
+                    <a
+                        href="https://open.spotify.com/search/Voga%20Voga%20Marineiro"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="song-external">
+
+                        <div class="voga-placeholder">
+                            <span>♥</span>
+                            <strong>Voga Voga<br>Mariñeiro</strong>
+                            <small>Escuchar en Spotify →</small>
+                        </div>
+
+                    </a>
+
+                </div>
+
+                <div class="song-info">
+
+                    <span>10 · GALICIA</span>
+
+                    <h2>Voga Voga Marineiro</h2>
+
+                    <p>
+                        Canción popular gallega
+                    </p>
+
+                    <p class="song-story">
+                        Porque Galicia también forma parte
+                        de nuestra historia.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+        <!-- FINAL -->
+        <section class="quote-section">
+
+            <p>
+                “Y si algún día escuchamos cualquiera de estas canciones
+                por separado, espero que siempre nos acordemos del otro.”
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer class="site-footer">
+        <p>Hecho con amor para An ♥</p>
+    </footer>
+
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
