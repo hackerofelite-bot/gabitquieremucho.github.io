@@ -2,222 +2,1626 @@
 <html lang="es">
 
 <head>
-    
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>Pelis pendientes ♥</title>
+    <title>Nuestras películas ♥</title>
 
     <link rel="stylesheet" href="style.css">
 
+    <style>
+        /* =====================================================
+           PELÍCULAS — CONTROLES
+        ===================================================== */
+
+        .movies-page {
+            position: relative;
+            z-index: 1;
+            width: min(1200px, 90vw);
+            margin: 0 auto 100px;
+        }
+
+        .movies-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 20px auto 50px;
+        }
+
+        .movie-filter {
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.75);
+            color: var(--text);
+            padding: 11px 18px;
+            font: 500 0.78rem var(--sans);
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .movie-filter:hover {
+            border-color: var(--pink);
+            color: var(--pink-dark);
+        }
+
+        .movie-filter.active {
+            background: var(--pink);
+            color: white;
+            border-color: var(--pink);
+        }
+
+        .add-movie-button {
+            margin-left: 15px;
+        }
+
+        /* =====================================================
+           AÑADIR PELÍCULA
+        ===================================================== */
+
+        .add-movie-panel {
+            width: min(600px, 90vw);
+            margin: 0 auto 45px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(77, 35, 51, 0.08);
+
+            display: none;
+        }
+
+        .add-movie-panel.show {
+            display: block;
+            animation: moviePanelAppear 0.3s ease;
+        }
+
+        @keyframes moviePanelAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .add-movie-panel h2 {
+            margin-bottom: 20px;
+            font: 600 2rem var(--serif);
+            text-align: center;
+        }
+
+        .movie-input-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .movie-input {
+            flex: 1;
+            min-width: 0;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            background: white;
+            color: var(--text);
+            font: 0.9rem var(--sans);
+            outline: none;
+        }
+
+        .movie-input:focus {
+            border-color: var(--pink);
+        }
+
+        .movie-add-message {
+            text-align: center;
+            min-height: 20px;
+            margin-top: 12px;
+            color: var(--pink-dark);
+            font-size: 0.8rem;
+        }
+
+        /* =====================================================
+           CONTADOR
+        ===================================================== */
+
+        .movies-counter {
+            text-align: center;
+            margin-bottom: 35px;
+            color: var(--muted);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .movies-counter strong {
+            color: var(--pink-dark);
+        }
+
+        /* =====================================================
+           GRID
+        ===================================================== */
+
+        .movies-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        /* =====================================================
+           TARJETA
+        ===================================================== */
+
+        .movie-card-new {
+            position: relative;
+            overflow: hidden;
+            background: var(--paper);
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 40px rgba(77, 35, 51, 0.08);
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .movie-card-new:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 55px rgba(77, 35, 51, 0.14);
+        }
+
+        .movie-poster {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            overflow: hidden;
+            background: var(--pink-light);
+        }
+
+        .movie-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .movie-card-new:hover .movie-poster img {
+            transform: scale(1.04);
+        }
+
+        /* =====================================================
+           ESTADO
+        ===================================================== */
+
+        .movie-status {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 7px 10px;
+            background: rgba(255, 255, 255, 0.94);
+            color: var(--muted);
+            font: 600 0.65rem var(--sans);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .movie-status.watched {
+            color: #6b8e70;
+        }
+
+        .movie-status.pending {
+            color: var(--pink-dark);
+        }
+
+        /* =====================================================
+           BOTÓN ELIMINAR
+        ===================================================== */
+
+        .delete-movie {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 3;
+
+            width: 32px;
+            height: 32px;
+
+            border: 0;
+            border-radius: 50%;
+
+            background: rgba(64, 43, 51, 0.82);
+            color: white;
+
+            cursor: pointer;
+            font-size: 15px;
+
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.2s ease;
+        }
+
+        .movie-card-new:hover .delete-movie {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .delete-movie:hover {
+            background: var(--pink-dark);
+        }
+
+        /* =====================================================
+           INFO
+        ===================================================== */
+
+        .movie-info-new {
+            padding: 22px 20px 20px;
+        }
+
+        .movie-info-new span {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--pink);
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .movie-info-new h2 {
+            margin: 0 0 5px;
+            font: 600 1.7rem / 1 var(--serif);
+            color: var(--text);
+        }
+
+        .movie-info-new p {
+            margin: 0 0 15px;
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        /* =====================================================
+           BOTONES ESTADO
+        ===================================================== */
+
+        .movie-actions {
+            display: flex;
+            gap: 7px;
+        }
+
+        .movie-state-button {
+            flex: 1;
+            padding: 9px 5px;
+
+            border: 1px solid var(--border);
+            background: transparent;
+
+            color: var(--muted);
+            font: 500 0.63rem var(--sans);
+
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .movie-state-button:hover {
+            border-color: var(--pink);
+            color: var(--pink-dark);
+        }
+
+        .movie-state-button.selected {
+            background: var(--pink-light);
+            border-color: var(--pink);
+            color: var(--pink-dark);
+        }
+
+        /* =====================================================
+           SIN RESULTADOS
+        ===================================================== */
+
+        .no-movies {
+            display: none;
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--muted);
+        }
+
+        .no-movies.show {
+            display: block;
+        }
+
+        .no-movies span {
+            display: block;
+            margin-bottom: 15px;
+            font: 3rem var(--serif);
+            color: var(--pink);
+        }
+
+        .no-movies h2 {
+            margin-bottom: 10px;
+            font: 600 2rem var(--serif);
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+            .movies-list {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .movies-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .movie-info-new {
+                padding: 17px 14px;
+            }
+
+            .movie-info-new h2 {
+                font-size: 1.45rem;
+            }
+
+            .movie-actions {
+                flex-direction: column;
+            }
+
+            .delete-movie {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            .movie-input-row {
+                flex-direction: column;
+            }
+
+            .add-movie-button {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .movies-list {
+                grid-template-columns: 1fr;
+            }
+
+            .movie-poster {
+                aspect-ratio: 2 / 2.8;
+            }
+        }
+    </style>
 </head>
+
 
 <body>
 
-<div class="floating-hearts"></div>
-
-<header class="site-header">
-
-    <a href="home.html" class="logo">
-        A <span>♥</span> G
-    </a>
-
-    <button class="mobile-menu">
-        ☰
-    </button>
-
-    <nav class="navigation">
-
-        <a href="home.html">Inicio</a>
-        <a href="historia.html">Historia</a>
-        <a href="recuerdos.html">Recuerdos</a>
-        <a href="fuera-juntos.html">Fuera juntos</a>
-        <a href="musica.html">Música</a>
-        <a href="pelis.html">Pelis</a>
-        <a href="abre-cuando.html">Abre cuando...</a>
-        <a href="test.html">Test</a>
-
-    </nav>
-
-</header>
+    <div class="floating-hearts"></div>
 
 
-<main>
+    <!-- HEADER -->
+    <header class="site-header">
 
-<section class="section">
+        <a href="home.html" class="logo">
+            Gabi <span>♥</span> An
+        </a>
 
-    <div class="section-heading">
+        <nav class="navigation">
 
-        <span class="small-title">
-            MANTA + PALOMITAS
-        </span>
+            <a href="home.html">
+                Inicio
+            </a>
 
-        <h1>
-            Pelis pendientes 🍿
-        </h1>
+            <a href="historia.html">
+                Historia
+            </a>
+
+            <a href="musica.html">
+                Música
+            </a>
+
+            <a href="pelis.html" class="active">
+                Pelis
+            </a>
+
+            <a href="abre-cuando.html">
+                Abre cuando...
+            </a>
+
+            <a href="test.html">
+                Test
+            </a>
+
+        </nav>
+
+        <button
+            class="mobile-menu"
+            aria-label="Abrir menú">
+            ☰
+        </button>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- INTRO -->
+        <section class="section-heading">
+
+            <span class="small-title">
+                NUESTRO CINE
+            </span>
+
+            <div class="ornament">
+                ♥
+            </div>
+
+            <h1>
+                Películas para<br>
+                ver contigo.
+            </h1>
+
+            <p>
+                Las que ya hemos visto, las que tenemos pendientes
+                y todas las que todavía nos quedan por descubrir.
+            </p>
+
+        </section>
+
+
+        <div class="movies-page">
+
+
+            <!-- FILTROS -->
+            <div class="movies-controls">
+
+                <button
+                    class="movie-filter active"
+                    data-filter="all">
+                    Todas
+                </button>
+
+                <button
+                    class="movie-filter"
+                    data-filter="pending">
+                    Pendientes
+                </button>
+
+                <button
+                    class="movie-filter"
+                    data-filter="watched">
+                    Vistas
+                </button>
+
+                <button
+                    class="button primary add-movie-button"
+                    id="openAddMovie">
+                    + Añadir película
+                </button>
+
+            </div>
+
+
+            <!-- AÑADIR -->
+            <div
+                class="add-movie-panel"
+                id="addMoviePanel">
+
+                <h2>
+                    Añadir una película
+                </h2>
+
+                <div class="movie-input-row">
+
+                    <input
+                        type="text"
+                        id="movieInput"
+                        class="movie-input"
+                        placeholder="Nombre de la película..."
+                        autocomplete="off">
+
+                    <button
+                        class="button primary"
+                        id="addMovie">
+                        Añadir
+                    </button>
+
+                </div>
+
+                <div
+                    class="movie-add-message"
+                    id="movieAddMessage">
+                </div>
+
+            </div>
+
+
+            <!-- CONTADOR -->
+            <div class="movies-counter">
+
+                <strong id="movieCount">
+                    0
+                </strong>
+
+                películas ·
+
+                <strong id="watchedCount">
+                    0
+                </strong>
+
+                vistas ·
+
+                <strong id="pendingCount">
+                    0
+                </strong>
+
+                pendientes
+
+            </div>
+
+
+            <!-- LISTA -->
+            <div
+                class="movies-list"
+                id="moviesList">
+            </div>
+
+
+            <!-- SIN RESULTADOS -->
+            <div
+                class="no-movies"
+                id="noMovies">
+
+                <span>
+                    ♡
+                </span>
+
+                <h2>
+                    Aquí no hay películas.
+                </h2>
+
+                <p>
+                    Añade alguna que tengamos que ver juntos.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- FRASE FINAL -->
+        <section class="quote-section">
+
+            <p>
+                “Una película puede durar dos horas,
+                pero el recuerdo puede durar toda la vida.”
+            </p>
+
+        </section>
+
+
+    </main>
+
+
+    <footer class="site-footer">
 
         <p>
-            Nuestra lista de películas para ver juntos en casa.
+            Hecho con amor para An ♥
         </p>
 
-    </div>
+    </footer>
 
 
-    <div class="movies-grid">
+    <script src="script.js"></script>
 
 
-        <article class="movie-card">
+    <script>
+        /* =====================================================
+           NUESTRA LISTA DE PELÍCULAS
+        ===================================================== */
 
-            <div class="movie-image">
+        const defaultMovies = [
 
-                <img
-                    src="images/peli-01.jpg"
-                    alt="Portada de película"
+            {
+                title: "Antes del amanecer",
+                search: "Before Sunrise"
+            },
+
+            {
+                title: "Coherence",
+                search: "Coherence 2013 film"
+            },
+
+            {
+                title: "Olvídate de mí",
+                search: "Eternal Sunshine of the Spotless Mind"
+            },
+
+            {
+                title: "Toy Story",
+                search: "Toy Story"
+            },
+
+            {
+                title: "La invención de Hugo",
+                search: "Hugo 2011 film"
+            },
+
+            {
+                title: "Otra ronda",
+                search: "Another Round film"
+            },
+
+            {
+                title: "Ahora",
+                search: "Ahora película"
+            },
+
+            {
+                title: "Your Name",
+                search: "Your Name film"
+            },
+
+            {
+                title: "Todo sobre mi madre",
+                search: "All About My Mother"
+            },
+
+            {
+                title: "Minari",
+                search: "Minari film"
+            },
+
+            {
+                title: "Ven y mira",
+                search: "Come and See film"
+            },
+
+            {
+                title: "Silence",
+                search: "Silence 2016 film"
+            },
+
+            {
+                title: "El laberinto del fauno",
+                search: "Pan's Labyrinth"
+            },
+
+            {
+                title: "Interestatal 60",
+                search: "Interstate 60 film"
+            },
+
+            {
+                title: "La gran belleza",
+                search: "The Great Beauty"
+            },
+
+            {
+                title: "Paprika",
+                search: "Paprika 2006 film"
+            },
+
+            {
+                title: "Tekkonkinkreet",
+                search: "Tekkonkinkreet"
+            },
+
+            {
+                title: "Melancolía",
+                search: "Melancholia 2011 film"
+            },
+
+            {
+                title: "Oldboy",
+                search: "Oldboy 2003 film"
+            },
+
+            {
+                title: "Mamma Mia!",
+                search: "Mamma Mia film"
+            },
+
+            {
+                title: "Salò",
+                search: "Salò 120 Days of Sodom"
+            },
+
+            {
+                title: "Asteroid City",
+                search: "Asteroid City"
+            },
+
+            {
+                title: "Mr. Nobody",
+                search: "Mr. Nobody film"
+            },
+
+            {
+                title: "Poor Things",
+                search: "Poor Things film"
+            },
+
+            {
+                title: "Men Behind the Sun",
+                search: "Men Behind the Sun film"
+            },
+
+            {
+                title: "Pearl",
+                search: "Pearl 2022 film"
+            },
+
+            {
+                title: "La autopista del blabla",
+                search: "La autopista del blabla película"
+            },
+
+            {
+                title: "La vida secreta de Walter Mitty",
+                search: "The Secret Life of Walter Mitty 2013"
+            },
+
+            {
+                title: "I Origins",
+                search: "I Origins"
+            },
+
+            {
+                title: "Project X",
+                search: "Project X 2012 film"
+            },
+
+            {
+                title: "Seven",
+                search: "Se7en"
+            },
+
+            {
+                title: "Call Me by Your Name",
+                search: "Call Me by Your Name"
+            },
+
+            {
+                title: "Brave",
+                search: "Brave 2012 Pixar"
+            },
+
+            {
+                title: "Titanic",
+                search: "Titanic 1997 film"
+            },
+
+            {
+                title: "Aftersun",
+                search: "Aftersun film"
+            },
+
+            {
+                title: "Forgotten",
+                search: "Forgotten 2017 Korean film"
+            },
+
+            {
+                title: "Violet y Finch",
+                search: "All the Bright Places film"
+            },
+
+            {
+                title: "Trainspotting",
+                search: "Trainspotting"
+            },
+
+            {
+                title: "It Follows",
+                search: "It Follows"
+            },
+
+            {
+                title: "Big Fish",
+                search: "Big Fish 2003 film"
+            },
+
+            {
+                title: "Hero",
+                search: "Hero 2002 Chinese film"
+            },
+
+            {
+                title: "Peregrin",
+                search: "Miss Peregrine's Home for Peculiar Children"
+            },
+
+            {
+                title: "El faro",
+                search: "The Lighthouse 2019 film"
+            },
+
+            {
+                title: "Todo a la vez en todas partes",
+                search: "Everything Everywhere All at Once"
+            },
+
+            {
+                title: "Incendies",
+                search: "Incendies 2010 film"
+            },
+
+            {
+                title: "Hora punta",
+                search: "Rush Hour 1998 film"
+            },
+
+            {
+                title: "Beautiful Boy",
+                search: "Beautiful Boy 2018 film"
+            },
+
+            {
+                title: "500 Days of Summer",
+                search: "500 Days of Summer"
+            }
+
+        ];
+
+
+        /* =====================================================
+           LOCALSTORAGE
+        ===================================================== */
+
+        const STORAGE_KEY = "gabi_an_peliculas";
+
+        let movies;
+
+
+        function loadMovies() {
+
+            const saved =
+                localStorage.getItem(STORAGE_KEY);
+
+            if (saved) {
+
+                try {
+
+                    movies = JSON.parse(saved);
+
+                } catch {
+
+                    movies = createInitialMovies();
+
+                }
+
+            } else {
+
+                movies = createInitialMovies();
+
+            }
+
+        }
+
+
+        function createInitialMovies() {
+
+            return defaultMovies.map((movie, index) => {
+
+                return {
+                    id: "movie-" + index,
+                    title: movie.title,
+                    search: movie.search,
+                    status: "pending",
+                    custom: false
+                };
+
+            });
+
+        }
+
+
+        function saveMovies() {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(movies)
+            );
+
+        }
+
+
+        /* =====================================================
+           OBTENER POSTER DE INTERNET
+        ===================================================== */
+
+        async function getPoster(search) {
+
+            try {
+
+                const url =
+                    "https://en.wikipedia.org/api/rest_v1/page/summary/"
+                    + encodeURIComponent(search.replace(/ /g, "_"));
+
+                const response =
+                    await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error("No encontrado");
+                }
+
+                const data =
+                    await response.json();
+
+                if (
+                    data.thumbnail &&
+                    data.thumbnail.source
+                ) {
+
+                    return data.thumbnail.source;
+
+                }
+
+            } catch (error) {
+
+                console.log(
+                    "No se encontró portada:",
+                    search
+                );
+
+            }
+
+            return null;
+
+        }
+
+
+        /* =====================================================
+           PLACEHOLDER
+        ===================================================== */
+
+        function createPosterPlaceholder(title) {
+
+            const encoded =
+                encodeURIComponent(title);
+
+            return `
+                <div
+                    style="
+                        width:100%;
+                        height:100%;
+                        display:flex;
+                        flex-direction:column;
+                        justify-content:center;
+                        align-items:center;
+                        text-align:center;
+                        padding:25px;
+                        background:
+                        linear-gradient(
+                            145deg,
+                            #fff0f4,
+                            #fffaf7
+                        );
+                        color:#9f3158;
+                    "
                 >
 
-            </div>
+                    <span
+                        style="
+                            font-size:2.5rem;
+                            margin-bottom:15px;
+                        "
+                    >
+                        ♥
+                    </span>
 
-            <div class="movie-content">
+                    <strong
+                        style="
+                            font-family:
+                            Cormorant Garamond,
+                            Georgia,
+                            serif;
+                            font-size:1.4rem;
+                            line-height:1.1;
+                        "
+                    >
+                        ${escapeHTML(title)}
+                    </strong>
 
-                <span>
-                    PENDIENTE
-                </span>
+                </div>
+            `;
 
-                <h2>
-                    [PELÍCULA]
-                </h2>
-
-                <p>
-                    [GÉNERO · PLATAFORMA]
-                </p>
-
-                <button class="movie-check">
-                    ○ Pendiente
-                </button>
-
-            </div>
-
-        </article>
-
-
-        <article class="movie-card">
-
-            <div class="movie-image">
-
-                <img
-                    src="images/peli-02.jpg"
-                    alt="Portada de película"
-                >
-
-            </div>
-
-            <div class="movie-content">
-
-                <span>
-                    PENDIENTE
-                </span>
-
-                <h2>
-                    [PELÍCULA]
-                </h2>
-
-                <p>
-                    [GÉNERO · PLATAFORMA]
-                </p>
-
-                <button class="movie-check">
-                    ○ Pendiente
-                </button>
-
-            </div>
-
-        </article>
+        }
 
 
-        <article class="movie-card">
+        /* =====================================================
+           SEGURIDAD HTML
+        ===================================================== */
 
-            <div class="movie-image">
+        function escapeHTML(text) {
 
-                <img
-                    src="images/peli-03.jpg"
-                    alt="Portada de película"
-                >
+            const div =
+                document.createElement("div");
 
-            </div>
+            div.textContent = text;
 
-            <div class="movie-content">
+            return div.innerHTML;
 
-                <span>
-                    PENDIENTE
-                </span>
-
-                <h2>
-                    [PELÍCULA]
-                </h2>
-
-                <p>
-                    [GÉNERO · PLATAFORMA]
-                </p>
-
-                <button class="movie-check">
-                    ○ Pendiente
-                </button>
-
-            </div>
-
-        </article>
+        }
 
 
-        <article class="movie-card">
+        /* =====================================================
+           RENDER
+        ===================================================== */
 
-            <div class="movie-image">
-
-                <img
-                    src="images/peli-04.jpg"
-                    alt="Portada de película"
-                >
-
-            </div>
-
-            <div class="movie-content">
-
-                <span>
-                    PENDIENTE
-                </span>
-
-                <h2>
-                    [PELÍCULA]
-                </h2>
-
-                <p>
-                    [GÉNERO · PLATAFORMA]
-                </p>
-
-                <button class="movie-check">
-                    ○ Pendiente
-                </button>
-
-            </div>
-
-        </article>
+        let currentFilter = "all";
 
 
-    </div>
+        async function renderMovies() {
 
-</section>
+            const container =
+                document.getElementById("moviesList");
 
-</main>
+            const noMovies =
+                document.getElementById("noMovies");
+
+            container.innerHTML = "";
+
+            const filtered =
+                movies.filter(movie => {
+
+                    if (currentFilter === "all") {
+                        return true;
+                    }
+
+                    return movie.status === currentFilter;
+
+                });
 
 
-<footer>
-    Hecho con amor, para An. ♥
-</footer>
+            noMovies.classList.toggle(
+                "show",
+                filtered.length === 0
+            );
 
-<script src="script.js"></script>
+
+            filtered.forEach((movie, index) => {
+
+                const card =
+                    createMovieCard(movie);
+
+                container.appendChild(card);
+
+                loadMoviePoster(
+                    movie,
+                    card
+                );
+
+            });
+
+
+            updateCounters();
+
+        }
+
+
+        /* =====================================================
+           CREAR TARJETA
+        ===================================================== */
+
+        function createMovieCard(movie) {
+
+            const article =
+                document.createElement("article");
+
+            article.className =
+                "movie-card-new";
+
+            article.dataset.id =
+                movie.id;
+
+
+            const statusText =
+                movie.status === "watched"
+                    ? "✓ Vista"
+                    : "◷ Pendiente";
+
+
+            article.innerHTML = `
+
+                <div class="movie-poster">
+
+                    <div
+                        class="movie-status
+                        ${movie.status}"
+                    >
+                        ${statusText}
+                    </div>
+
+                    <button
+                        class="delete-movie"
+                        title="Eliminar película"
+                        aria-label="Eliminar película"
+                    >
+                        ×
+                    </button>
+
+                    <div
+                        class="poster-loading"
+                        style="
+                            width:100%;
+                            height:100%;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            color:#846d76;
+                            font-family:Inter,Arial,sans-serif;
+                            font-size:.75rem;
+                        "
+                    >
+                        Cargando...
+                    </div>
+
+                </div>
+
+
+                <div class="movie-info-new">
+
+                    <span>
+                        ${movie.custom ? "AÑADIDA" : "PELÍCULA"}
+                    </span>
+
+                    <h2>
+                        ${escapeHTML(movie.title)}
+                    </h2>
+
+                    <p>
+                        ${movie.status === "watched"
+                            ? "Ya la hemos visto ♥"
+                            : "Pendiente para ver juntos"}
+                    </p>
+
+                    <div class="movie-actions">
+
+                        <button
+                            class="
+                                movie-state-button
+                                ${movie.status === "pending"
+                                    ? "selected"
+                                    : ""}"
+                            data-state="pending"
+                        >
+                            Pendiente
+                        </button>
+
+                        <button
+                            class="
+                                movie-state-button
+                                ${movie.status === "watched"
+                                    ? "selected"
+                                    : ""}"
+                            data-state="watched"
+                        >
+                            Vista ✓
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            /* ELIMINAR */
+
+            article
+                .querySelector(".delete-movie")
+                .addEventListener(
+                    "click",
+                    () => deleteMovie(movie.id)
+                );
+
+
+            /* CAMBIAR ESTADO */
+
+            article
+                .querySelectorAll(".movie-state-button")
+                .forEach(button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            setMovieStatus(
+                                movie.id,
+                                button.dataset.state
+                            );
+
+                        }
+                    );
+
+                });
+
+
+            return article;
+
+        }
+
+
+        /* =====================================================
+           CARGAR PORTADA
+        ===================================================== */
+
+        async function loadMoviePoster(
+            movie,
+            card
+        ) {
+
+            const poster =
+                card.querySelector(".movie-poster");
+
+            const image =
+                await getPoster(movie.search);
+
+
+            const loading =
+                card.querySelector(".poster-loading");
+
+
+            if (loading) {
+                loading.remove();
+            }
+
+
+            if (image) {
+
+                const img =
+                    document.createElement("img");
+
+                img.src = image;
+
+                img.alt =
+                    "Portada de " + movie.title;
+
+                img.loading = "lazy";
+
+                img.onerror = () => {
+
+                    poster.insertAdjacentHTML(
+                        "beforeend",
+                        createPosterPlaceholder(
+                            movie.title
+                        )
+                    );
+
+                };
+
+                poster.appendChild(img);
+
+            } else {
+
+                poster.insertAdjacentHTML(
+                    "beforeend",
+                    createPosterPlaceholder(
+                        movie.title
+                    )
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CAMBIAR ESTADO
+        ===================================================== */
+
+        function setMovieStatus(
+            id,
+            status
+        ) {
+
+            const movie =
+                movies.find(
+                    movie => movie.id === id
+                );
+
+
+            if (!movie) {
+                return;
+            }
+
+
+            movie.status = status;
+
+            saveMovies();
+
+            renderMovies();
+
+        }
+
+
+        /* =====================================================
+           ELIMINAR
+        ===================================================== */
+
+        function deleteMovie(id) {
+
+            const movie =
+                movies.find(
+                    movie => movie.id === id
+                );
+
+
+            if (!movie) {
+                return;
+            }
+
+
+            const confirmed =
+                confirm(
+                    `¿Quieres eliminar "${movie.title}" de la lista?`
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            movies =
+                movies.filter(
+                    movie => movie.id !== id
+                );
+
+
+            saveMovies();
+
+            renderMovies();
+
+        }
+
+
+        /* =====================================================
+           AÑADIR
+        ===================================================== */
+
+        function addMovie() {
+
+            const input =
+                document.getElementById(
+                    "movieInput"
+                );
+
+            const message =
+                document.getElementById(
+                    "movieAddMessage"
+                );
+
+
+            const title =
+                input.value.trim();
+
+
+            if (!title) {
+
+                message.textContent =
+                    "Escribe el nombre de una película ♥";
+
+                return;
+
+            }
+
+
+            const exists =
+                movies.some(
+                    movie =>
+                        movie.title.toLowerCase()
+                        === title.toLowerCase()
+                );
+
+
+            if (exists) {
+
+                message.textContent =
+                    "Esa película ya está en la lista.";
+
+                return;
+
+            }
+
+
+            const newMovie = {
+
+                id:
+                    "custom-" +
+                    Date.now(),
+
+                title: title,
+
+                search: title,
+
+                status: "pending",
+
+                custom: true
+
+            };
+
+
+            movies.push(newMovie);
+
+            saveMovies();
+
+            input.value = "";
+
+            message.textContent =
+                "Película añadida ♥";
+
+
+            renderMovies();
+
+
+            setTimeout(() => {
+
+                message.textContent = "";
+
+            }, 2500);
+
+        }
+
+
+        /* =====================================================
+           CONTADORES
+        ===================================================== */
+
+        function updateCounters() {
+
+            const total =
+                movies.length;
+
+            const watched =
+                movies.filter(
+                    movie =>
+                        movie.status === "watched"
+                ).length;
+
+            const pending =
+                movies.filter(
+                    movie =>
+                        movie.status === "pending"
+                ).length;
+
+
+            document.getElementById(
+                "movieCount"
+            ).textContent = total;
+
+
+            document.getElementById(
+                "watchedCount"
+            ).textContent = watched;
+
+
+            document.getElementById(
+                "pendingCount"
+            ).textContent = pending;
+
+        }
+
+
+        /* =====================================================
+           FILTROS
+        ===================================================== */
+
+        document
+            .querySelectorAll(".movie-filter")
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                ".movie-filter"
+                            )
+                            .forEach(
+                                btn =>
+                                    btn.classList
+                                    .remove("active")
+                            );
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        currentFilter =
+                            button.dataset.filter;
+
+
+                        renderMovies();
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           PANEL AÑADIR
+        ===================================================== */
+
+        document
+            .getElementById("openAddMovie")
+            .addEventListener(
+                "click",
+                () => {
+
+                    const panel =
+                        document.getElementById(
+                            "addMoviePanel"
+                        );
+
+                    panel.classList.toggle(
+                        "show"
+                    );
+
+                    if (
+                        panel.classList.contains(
+                            "show"
+                        )
+                    ) {
+
+                        document
+                            .getElementById(
+                                "movieInput"
+                            )
+                            .focus();
+
+                    }
+
+                }
+            );
+
+
+        document
+            .getElementById("addMovie")
+            .addEventListener(
+                "click",
+                addMovie
+            );
+
+
+        document
+            .getElementById("movieInput")
+            .addEventListener(
+                "keydown",
+                event => {
+
+                    if (
+                        event.key === "Enter"
+                    ) {
+
+                        addMovie();
+
+                    }
+
+                }
+            );
+
+
+        /* =====================================================
+           INICIAR
+        ===================================================== */
+
+        loadMovies();
+
+        renderMovies();
+
+    </script>
 
 </body>
+
 </html>
