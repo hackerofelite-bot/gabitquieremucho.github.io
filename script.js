@@ -852,10 +852,10 @@ if (quiz) {
                     "Hoy tienes demasiada energía para quedarte quieta.",
 
                 text:
-                    "Necesitas hacer cosas, moverte, descubrir algo y disfrutar el momento. Eres esa An que aparece con las pilas cargadas y que puede convertir cualquier plan pequeño en una aventura.",
+                    "Necesitas hacer cosas, moverte, descubrir algo y disfrutar el momento. Eres esa An que aparece llena de energía y convierte cualquier situación en entretenida.",
 
                 message:
-                    "Ven aquí, terremoto. Te quiero incluso cuando no paras quieta ♥"
+                    "Ven aquí, mi energía vital. Me encanta cuando propones todo el rato cosas para pasarnoslo genial ♥"
 
             },
 
@@ -868,10 +868,10 @@ if (quiz) {
                     "Hoy lo único que quieres es cariño.",
 
                 text:
-                    "Estás en uno de esos días en los que un abrazo, estar juntos y sentirte querida pueden arreglar prácticamente cualquier cosa. Hoy necesitas a tu persona favorita cerquita.",
+                    "Estás en uno de esos días en los que un abrazo, estar juntos y sentirte querida pueden arreglar prácticamente cualquier cosa. Hoy necesitas a tu persona favorita (yo jsjsjs) cerca.",
 
                 message:
-                    "Ven, mi niña. Hoy toca darte todos los mimos que quieras ♥"
+                    "Ven, mi chica. Hoy voy darte todos los mimos que quieras ♥"
 
             },
 
@@ -881,13 +881,13 @@ if (quiz) {
                 title: "An caliente 🔥",
 
                 subtitle:
-                    "Creo que alguien está teniendo pensamientos peligrosos... 👀",
+                    "En que piensas eh an... 👀",
 
                 text:
-                    "Hoy estás especialmente cariñosa, juguetona y con ganas de estar muy, muy cerca de tu novio. Digamos que probablemente no sea el mejor día para dejaros solos demasiado tiempo...",
+                    "Hoy estás especialmente cariñosa, toquetenando y con ganas de estar muy, muy cerca de mí. A lo mejor es hora de ir a la habitación y apagar la luz...",
 
                 message:
-                    "Creo que ya sé por qué has respondido así... 😏♥"
+                    "Creo que ya sé por qué has respondido así..."
 
             },
 
